@@ -5,6 +5,8 @@ zsh
 tmux
 docker
 zsh
+fzf
+bat
 conda
 omz
 Fonts: caskadia, github, Nelson, Font Awesome 6
