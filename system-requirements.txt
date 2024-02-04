@@ -1,0 +1,18 @@
+pyenv
+stow
+git
+zsh
+tmux
+docker
+zsh
+conda
+omz
+Fonts: caskadia, github, Nelson, Font Awesome 6
+Fonts editor: github
+Font Terminal: nerd (nelson)
+
+Any (iMac / Windows):
+
+- Windows manager (yabai / Komorebi)
+- Keys mapper (skhd / autohotkey)
+- Terminal app (iTerm / Windows Terminal)
