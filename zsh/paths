@@ -1,1 +1,3 @@
-addToPathFront $HOME/.local/scripts
+addToPathFront $HOME/.local/script
+
+export PYTHONPATH="${PYTHONPATH}:~/.local/scripts"

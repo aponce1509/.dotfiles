@@ -7,6 +7,7 @@ if [[ -z $DOTFILES ]]; then
     DOTFILES=$HOME/.dotfiles
 fi
 
+stow -t "$HOME/Library/Application Support/Code/User" -D vscode-mac
 stow -t "$HOME/Library/Application Support/Code/User" vscode-mac
 
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install

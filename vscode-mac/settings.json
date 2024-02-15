@@ -107,6 +107,7 @@
         "dtypes",
         "inicializaciones",
         "mlflow",
+        "neovim",
         "sessionx",
         "sklearn",
         "wandb",
