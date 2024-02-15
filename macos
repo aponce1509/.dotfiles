@@ -1,13 +1,15 @@
 #!/usr/bin/env zsh
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="bin,yabai,tmux,spacebar,zsh,powerlevel10k"
+    STOW_FOLDERS="bin,yabai,tmux,spacebar,skhd,zsh,powerlevel10k"
 fi
 
 if [[ -z $DOTFILES ]]; then
     DOTFILES=$HOME/.dotfiles
 fi
 
+pushd $DOTFILES
 stow -t "$HOME/Library/Application Support/Code/User" -D vscode-mac
 stow -t "$HOME/Library/Application Support/Code/User" vscode-mac
+popd
 
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
