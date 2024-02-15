@@ -39,10 +39,10 @@ commitDotFiles() {
     pushd personal
     git add .
     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
-    git push origin master
+    git push origin main
     popd
     git add .
     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
-    git push origin master
+    git push origin main
     popd
 }
