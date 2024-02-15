@@ -5,7 +5,7 @@
 # setxkbmap -option caps:ctrl_modifier
 
 # export STOW_FOLDERS="bin,nvim,tmux,uwuntu,netflix,personal,i3,zsh,xkb"
-export STOW_FOLDERS="bin,yabai,tmux,spacebar,zsh"
+export STOW_FOLDERS="bin,yabai,tmux,spacebar,zsh,powerlevel10k"
 
 startMongo() {
     sudo systemctl start mongod

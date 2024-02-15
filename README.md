@@ -2,7 +2,6 @@
 
 - He cambiado del plug-in sessionx para que me funcione el borrar -> ir al script y cambiar la tecla a `ctrl-g`.
 
-
 ```bash
 cd ~
 git clone git@github.com:aponce1509/.dotfiles.git
