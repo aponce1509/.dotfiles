@@ -1,0 +1,52 @@
+[colors.normal]
+black = "#272b30"
+blue = "#81a2be"
+cyan = "#7fb2c8"
+green = "#bdb968"
+magenta = "#b08cba"
+red = "#cc6666"
+white = "#afb4c3"
+yellow = "#f0c674"
+
+[colors.primary]
+background = "#272b30"
+foreground = "#afb4c3"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 15.0
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = "buttonless"
+opacity = 1.0
+startup_mode = "Windowed"
+option_as_alt = "Both"
+
+[keyboard]
+bindings = [{key = "j", mods = "Control|Shift|Alt", chars = "\u001B[74;7u"},]
+
+[window.padding]
+x = 20
+y = 20
+

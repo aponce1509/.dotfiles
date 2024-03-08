@@ -1,2 +1,4 @@
 alias tmk="tmux kill-session"
 alias tma="tmux attach"
+
+bindkey -s ^f "zellij_sessionizer\n"

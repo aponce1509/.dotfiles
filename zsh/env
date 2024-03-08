@@ -1,6 +1,7 @@
 # export STOW_FOLDERS="bin,nvim,tmux,uwuntu,netflix,personal,i3,zsh,xkb"
-export STOW_FOLDERS="bin,yabai,tmux,spacebar,zsh,powerlevel10k"
+export STOW_FOLDERS="zellij,bin,alacritty,yabai,tmux,spacebar,zsh,powerlevel10k,nvim"
 export DOTFILES=$HOME/.dotfiles
+export DEFAULT_CONDA_ENV="default"
 
 startMongo() {
     sudo systemctl start mongod

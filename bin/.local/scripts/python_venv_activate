@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Get the current working directory and store it in a variable
+CURRENT_DIR="$(pwd)"
+DEFAULT_CONDA_ENV="base"
+
+# Try to source the .env file
+[ -f "${CURRENT_DIR}/.env" ] && source "${CURRENT_DIR}/.env"
+
+# Check if the CONDA_ENV environment variable exists
+if [ -n "${CONDA_ENV}" ]; then
+    echo "activating user defined mamba venv"
+    mamba activate "${CONDA_ENV}"
+# If not, check if the PYTHON_VENV environment variable is defined
+elif [ -n "${PYTHON_VENV}" ]; then
+    echo "user define venv"
+    source "${PYTHON_VENV}/bin/activate"
+# If not, search for a .venv folder and activate the Python venv
+elif [ -d "${CURRENT_DIR}/.venv" ]; then
+    echo "activating default venv"
+    source "${CURRENT_DIR}/.venv/bin/activate"
+# If not, execute mamba activate with a default conda environment
+else
+    mamba activate "${DEFAULT_CONDA_ENV}"
+fi

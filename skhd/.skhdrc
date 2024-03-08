@@ -66,7 +66,7 @@ alt - s : yabai -m space --layout stack
 
 # cycle through stack windows
 alt - p : yabai -m window --focus stack.next || yabai -m window --focus south
-alt - n : yabai -m window --focus stack.prev || yabai -m window --focus north
+# alt - n : yabai -m window --focus stack.prev || yabai -m window --focus north
 
 # # forwards
 # alt - p : yabai -m query --spaces --space \
@@ -96,3 +96,4 @@ alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window native fullscreen
 alt + shift - f : yabai -m window --toggle native-fullscreen
+
