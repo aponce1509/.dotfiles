@@ -9,8 +9,8 @@ def hello() -> None:
     return None
 
 
-def hola() -> None:
-    return None
+def hola() -> str:
+    return "Hola"
 
 
 a = [-6, 1, 4, 4, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
