@@ -13,11 +13,11 @@ keybinds clear-defaults=true {
         }
     }
     locked {
-        bind "Insert" { SwitchToMode "Normal"; }
+        bind "Home" { SwitchToMode "Normal"; }
         bind "Ctrl q" { SwitchToMode "Normal"; }
     }
     shared_except "locked" {   
-        bind "Insert" { SwitchToMode "Locked"; }
+        bind "Home" { SwitchToMode "Locked"; }
         bind "Ctrl q" { SwitchToMode "Locked"; }
         bind "End" { Quit; }
         bind "Ctrl n" { NewPane; }

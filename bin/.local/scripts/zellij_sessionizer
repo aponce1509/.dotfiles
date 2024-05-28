@@ -18,7 +18,7 @@ if [[ $# -eq 1 ]]; then
     selected_path=$1
 else
     # If no argument was provided, interactively choose a directory
-    selected_path=$(find ~/repos -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected_path=$(find ~/repos ~/OneDrive/Documents/2_areas/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 # If no directory was selected, exit the script

@@ -21,10 +21,10 @@ layout {
 
 keybinds {
     locked {
-        bind "Insert" { GoToTab 2; SwitchToMode "Normal"; }
+        bind "Home" { GoToTab 2; SwitchToMode "Normal"; }
     }
 
     shared_except "locked" {
-        bind "Insert" { GoToTab 1; SwitchToMode "Locked"; }
+        bind "Home" { GoToTab 1; SwitchToMode "Locked"; }
     }
 }

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+path="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find "$path/00 - Index" ~/home -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+echo "hola"
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    echo "hola"
+    tmux new-session -s $selected_name -c $selected
+    exit 0
+fi
+
+echo $selected_name
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
+fi
+
+tmux switch-client -t $selected_name

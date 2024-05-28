@@ -79,7 +79,6 @@
     // "terminal.integrated.defaultLocation": "editor",
     "terminal.explorerKind": "external",
     "terminal.integrated.inheritEnv": false,
-    "terminal.integrated.fontFamily": "MesloLGS NF",
     "terminal.external.osxExec": "iterm.app",
     // Git
     "git.autofetch": true,
@@ -251,5 +250,6 @@
         // toggle comment selection
         { "before": ["leader", "/"], "commands": ["editor.action.commentLine"] }
     ],
-    "git.suggestSmartCommit": false
+    "git.suggestSmartCommit": false,
+    "terminal.integrated.fontFamily": "Hack Nerd Font"
 }

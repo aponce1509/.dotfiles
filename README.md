@@ -8,6 +8,12 @@ git clone git@github.com:aponce1509/.dotfiles.git
 cd .dotfiles
 sh macos
 ```
+ 
+```python
+def hola():
+    return None
+
+```
 
 ## Installation
 

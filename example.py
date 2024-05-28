@@ -1,14 +1,14 @@
-import os
-import typing
 import sys
+import pandas as pd
 
 
-def hello() -> None:
+def hello() -> int:
     print(sys.path)
     print("hello")
-    return None
+    return 1
 
 
+# buen días
 def hola() -> int:
     return 0
 
