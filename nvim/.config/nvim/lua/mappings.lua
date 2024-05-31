@@ -21,7 +21,12 @@ map("n", "<leader>kj", function()
   local ft_cmds = {
     python = "python3 " .. vim.fn.expand "%",
   }
-  require("nvterm.terminal").send(ft_cmds[vim.bo.filetype])
+  require("nvchad.term").runner {
+    pos = "sp",
+    size = 0.3,
+    cmd = ft_cmds[vim.bo.filetype],
+    clear_cmd = false,
+  }
 end, { desc = "Execute current file" })
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 map("n", "<leader>q", function()
@@ -40,7 +45,7 @@ map("x", "<leader>p", '"_dP')
 -- Obsidian
 map("n", "<leader>jk", function()
   -- os.execute("cd /Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/00 - Map Of Contents/")
-  local selected_files = require("custom.bin.list-index").list_files()
+  local selected_files = require("bin.list-index").list_files()
   -- Create a mapping between basenames and full paths
   local basename_to_path = {}
   for _, file in ipairs(selected_files) do
@@ -155,7 +160,8 @@ map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" })
 map(
   "n",
   "<leader>ff",
-  "<cmd> Telescope find_files find_command=rg,--no-ignore,--hidden,--glob=!**/.git/*,--files <CR>",
+  "<cmd> Telescope find_files find_command=rg,--no-ignore,--hidden,--glob=!**/.git/*"
+    .. ",--glob=!**/.mypy_cache/*,--glob=!**/__pycache__/*,--files <CR>",
   { desc = "Find files" }
 )
 
@@ -218,7 +224,7 @@ map("n", "<leader>gs", "<cmd>Git<CR>", { desc = "Fugitive git status" })
 -- harpoon
 map("n", "<leader>a", function()
   local harpoon = require "harpoon"
-  harpoon:list():append()
+  harpoon:list():add()
 end, { desc = "Harpoon append" })
 map("n", "<C-e>", function()
   local harpoon = require "harpoon"
@@ -229,22 +235,22 @@ map("n", "<C-S-E>", function()
   local harpoon_utils = require "custom.configs.harpoon_utils"
   harpoon_utils.toggle_telescope(harpoon:list())
 end, { desc = "Harpoon Telescope" })
-map("n", "<C-j>", function()
-  local harpoon = require "harpoon"
-  harpoon:list():select(1)
-end, { desc = "Harpoon go to 1" })
-map("n", "<C-k>", function()
-  local harpoon = require "harpoon"
-  harpoon:list():select(2)
-end, { desc = "Harpoon go to 2" })
-map("n", "<C-l>", function()
-  local harpoon = require "harpoon"
-  harpoon:list():select(3)
-end, { desc = "Harpoon go to 3" })
-map("n", "<C-y>", function()
-  local harpoon = require "harpoon"
-  harpoon:list():select(4)
-end, { desc = "Harpoon go to 4" })
+-- map("n", "<C-j>", function()
+--   local harpoon = require "harpoon"
+--   harpoon:list():select(1)
+-- end, { desc = "Harpoon go to 1" })
+-- map("n", "<C-k>", function()
+--   local harpoon = require "harpoon"
+--   harpoon:list():select(2)
+-- end, { desc = "Harpoon go to 2" })
+-- map("n", "<C-l>", function()
+--   local harpoon = require "harpoon"
+--   harpoon:list():select(3)
+-- end, { desc = "Harpoon go to 3" })
+-- map("n", "<C-y>", function()
+--   local harpoon = require "harpoon"
+--   harpoon:list():select(4)
+-- end, { desc = "Harpoon go to 4" })
 -- more keybinds!
 -- nvimtree
 map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
@@ -274,7 +280,8 @@ end, { desc = "Debug Current python file" })
 -- lspconfig
 -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 map("n", "<leader>.", function()
-  vim.lsp.buf.code_action()
+  -- vim.lsp.buf.code_action()
+  require("actions-preview").code_actions()
 end, { desc = "LSP code action" })
 map("n", "<leader>Wa", function()
   vim.lsp.buf.add_workspace_folder()
@@ -292,3 +299,12 @@ map("v", "<leader>.", function()
   vim.lsp.buf.code_action()
 end, { desc = "LSP code action" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+-- ufo
+map("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+map("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
+map("n", "zK", function()
+  local winid = require("ufo").peekFoldedLinesUnderCursor()
+  if not winid then
+    vim.lsp.buf.hover()
+  end
+end, { desc = "Peek Fold" })

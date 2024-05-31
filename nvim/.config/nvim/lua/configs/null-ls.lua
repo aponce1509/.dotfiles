@@ -41,11 +41,7 @@ local sources = {
   },
   cspell.code_actions,
   null_ls.builtins.formatting.prettierd,
-  -- -- spell check
-  -- require "none-ls-shellcheck.diagnostics",
-  -- require "none-ls-shellcheck.code_actions",
-  -- null_ls.builtins.diagnostics.codespell,
-  -- require("null_ls.builtins.diagnostics.misspell"),
+  null_ls.builtins.diagnostics.markdownlint,
 }
 
 -- using register method

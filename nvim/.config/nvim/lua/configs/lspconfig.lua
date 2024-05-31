@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "marksman" }
+local servers = { "html", "cssls", "marksman", "digestif", "markdown_oxide" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -22,14 +22,35 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
 }
 
--- python
-lspconfig.pyright.setup {
-  on_attach = on_attach,
+--python
+-- local py_right_capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+-- lspconfig.pyright.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "python" },
+-- }
+-- lspconfig.pyright.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- }
+lspconfig.jedi_language_server.setup({
   capabilities = capabilities,
-  filetypes = { "python" },
-}
+  on_attach = on_attach,
+  -- init_options = {
+  --   completion = {
+  --     disableSnippets = true,
+  --   },
+  -- }
+})
 lspconfig.ruff_lsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "python" },
+}
+-- latex
+lspconfig.texlab.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "tex", "latex", "markdown", "md" },
 }

@@ -2,7 +2,7 @@ require "nvchad.options"
 
 -- add yours here!
 
--- local o = vim.o
+local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 -- local autocmd = vim.api.nvim_create_autocmd
 local opt = vim.opt
@@ -11,6 +11,10 @@ local g = vim.g
 opt.relativenumber = true
 -- vim.o.spelllang = "en,es"
 -- vim.o.spell = true
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 opt.smartindent = true
 opt.tabstop = 4

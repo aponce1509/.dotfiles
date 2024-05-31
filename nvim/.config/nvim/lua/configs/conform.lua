@@ -9,6 +9,8 @@ local options = {
     python = { "isort", "black" },
     css = { "prettier" },
     html = { "prettier" },
+    markdown = { "deno_fmt" },
+    md = { "deno_fmt" },
 
     sh = { "shfmt" },
   },
@@ -18,7 +20,7 @@ local options = {
 
   format_on_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 500,
+    timeout_ms = 1000,
     lsp_fallback = true,
   },
 }

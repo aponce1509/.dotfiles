@@ -69,6 +69,7 @@ M.mason = {
     "codespell",
     "misspell",
     "cspell",
+    "marksman",
   },
 }
 

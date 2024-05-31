@@ -1,4 +1,4 @@
-local overrides = require "custom.configs.overrides"
+local overrides = require "configs.overrides"
 
 return {
 
@@ -7,6 +7,17 @@ return {
     -- event = 'BufWritePre', -- uncomment for format on save
     config = function()
       require "configs.conform"
+    end,
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    config = function()
+      require("ufo").setup {
+        provider_selector = function(bufnr, filetype, buftype)
+          return { "lsp", "indent" }
+        end,
+      }
     end,
   },
   {
@@ -67,6 +78,33 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
     },
+  },
+  {
+    "aznhe21/actions-preview.nvim",
+    -- config = function()
+    --
+    -- end,
+  },
+  -- using packer.nvim
+  {
+    "nmac427/guess-indent.nvim",
+    cmd = { "GuessIndent" },
+    config = function()
+      require("guess-indent").setup {
+        auto_cmd = true, -- Set to false to disable automatic execution
+        override_editorconfig = false, -- Set to true to override settings set by .editorconfig
+        filetype_exclude = { -- A list of filetypes for which the auto command gets disabled
+          "netrw",
+          "tutor",
+        },
+        buftype_exclude = { -- A list of buffer types for which the auto command gets disabled
+          "help",
+          "nofile",
+          "terminal",
+          "prompt",
+        },
+      }
+    end,
   },
   {
     "epwalsh/obsidian.nvim",
@@ -186,8 +224,16 @@ return {
     end,
   },
   {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+  {
     "rcarriga/nvim-dap-ui",
-    dependencies = "mfussenegger/nvim-dap",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function()
       local dap = require "dap"
       local dapui = require "dapui"
@@ -205,9 +251,9 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function(_, opts)
-      require("core.utils").load_mappings "dap"
-    end,
+    -- config = function(_, opts)
+    --   require("core.utils").load_mappings "dap"
+    -- end,
   },
   {
     "mfussenegger/nvim-dap-python",
@@ -216,7 +262,7 @@ return {
     config = function(_, opts)
       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
-      require("core.utils").load_mappings "dap_python"
+      -- require("core.utils").load_mappings "dap_python"
     end,
   },
   {
