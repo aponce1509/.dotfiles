@@ -2,15 +2,12 @@
 
 ## que tal
 
-$\frac{2}{3} * 2$
+$\Sigma(3x)\frac{2}{3} * 2$
 
 - Hola
-- Que tal 
+- Que tal
 - me llamo
 
 ```python
 print("hola")
 ```
-
-dia
-
