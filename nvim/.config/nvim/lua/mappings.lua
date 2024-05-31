@@ -314,3 +314,6 @@ end, { desc = "Peek Fold" })
 -- Neo-Tree
 map("n", "<leader>e", ":Neotree toggle <CR>", {})
 map("n", "<leader>bf", ":Neotree buffers reveal float<CR>", {})
+-- GitSings
+vim.keymap.set("n", "<leader>gi", ":Gitsigns preview_hunk<CR>", {})
+vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", {})
