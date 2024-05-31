@@ -253,7 +253,7 @@ end, { desc = "Harpoon Telescope" })
 -- end, { desc = "Harpoon go to 4" })
 -- more keybinds!
 -- nvimtree
-map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+-- map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 -- whichkey: TODO: change to noreamap
 --   n = {
 --     ["<leader>WK"] = {
@@ -308,3 +308,6 @@ map("n", "zK", function()
     vim.lsp.buf.hover()
   end
 end, { desc = "Peek Fold" })
+-- Neo-Tree
+map("n", "<leader>e", ":Neotree toggle <CR>", {})
+map("n", "<leader>bf", ":Neotree buffers reveal float<CR>", {})
