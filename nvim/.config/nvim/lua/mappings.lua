@@ -218,9 +218,12 @@ end, { desc = "Test attach" })
 -- undotree
 map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 -- gitlazy
-map("n", "<leader>gl", "<cmd>LazyGit<CR>", { desc = "LazyGit status" })
+map("n", "<leader>gl", "<cmd>LazyGit<CR>", { desc = "Git LazyGit status" })
 -- fugitive
-map("n", "<leader>gs", "<cmd>Git<CR>", { desc = "Fugitive git status" })
+map("n", "<leader>gs", "<cmd>Git<CR>", { desc = "Git Fugitive status" })
+map("n", "<leader>ga", "<cmd>Git add %<CR>", { desc = "Git add current file" })
+map("n", "<leader>gc", "<cmd>Git commit<CR>", { desc = "Git commit staged files" })
+map("n", "<leader>gp", "<cmd>Git push<CR>", { desc = "Git commit staged files" })
 -- harpoon
 map("n", "<leader>a", function()
   local harpoon = require "harpoon"
