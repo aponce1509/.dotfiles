@@ -101,6 +101,7 @@ return {
   -- using packer.nvim
   {
     "nmac427/guess-indent.nvim",
+    lazy=false,
     cmd = { "GuessIndent" },
     config = function()
       require("guess-indent").setup {

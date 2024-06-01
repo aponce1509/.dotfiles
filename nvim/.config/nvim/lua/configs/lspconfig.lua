@@ -25,24 +25,24 @@ lspconfig.tsserver.setup {
 --python
 -- local py_right_capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
--- lspconfig.pyright.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   filetypes = { "python" },
--- }
--- lspconfig.pyright.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
--- }
-lspconfig.jedi_language_server.setup({
-  capabilities = capabilities,
+lspconfig.pyright.setup {
   on_attach = on_attach,
-  -- init_options = {
-  --   completion = {
-  --     disableSnippets = true,
-  --   },
-  -- }
-})
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = { diagnosticMode = "off", typeCheckingMode = "off" },
+    },
+  },
+}
+-- lspconfig.jedi_language_server.setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- init_options = {
+--   completion = {
+--     disableSnippets = true,
+--   },
+-- }
+-- })
 lspconfig.ruff_lsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
