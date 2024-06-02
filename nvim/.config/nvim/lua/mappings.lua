@@ -19,7 +19,7 @@ map("n", "<leader>w", "<cmd> w <CR>", { desc = "Save file" })
 map("n", "<C-S-A-j>", "<cmd> w <CR>", { desc = "Save file" })
 map("n", "<leader>kj", function()
   local ft_cmds = {
-    python = "python3 " .. vim.fn.expand "%",
+    python = "python3 " .. '"' .. vim.fn.expand "%" .. '"',
   }
   require("nvchad.term").runner {
     pos = "sp",

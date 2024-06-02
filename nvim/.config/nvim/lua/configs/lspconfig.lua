@@ -31,9 +31,22 @@ lspconfig.pyright.setup {
   settings = {
     python = {
       analysis = { diagnosticMode = "off", typeCheckingMode = "off" },
+      inlayHints = true,
     },
   },
 }
+-- require("lspconfig").pylyzer.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   {
+--     python = {
+--       checkOnType = false,
+--       diagnostics = false,
+--       inlayHints = true,
+--       smartCompletion = true,
+--     },
+--   },
+-- }
 -- lspconfig.jedi_language_server.setup({
 --   capabilities = capabilities,
 --   on_attach = on_attach,

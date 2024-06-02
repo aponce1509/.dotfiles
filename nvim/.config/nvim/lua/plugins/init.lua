@@ -34,7 +34,19 @@ return {
     end,
   },
   {
+    "MysticalDevil/inlay-hints.nvim",
+    event = "LspAttach",
+    cmd = { "InlayHintsToggle" },
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      require("inlay-hints").setup { autocmd = { enable = true } }
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
+    -- opts = {
+    --   inlay_hints = { enabled = true },
+    -- },
     config = function()
       require "nvchad.configs.lspconfig"
       require "configs.lspconfig"
@@ -101,7 +113,7 @@ return {
   -- using packer.nvim
   {
     "nmac427/guess-indent.nvim",
-    lazy=false,
+    lazy = false,
     cmd = { "GuessIndent" },
     config = function()
       require("guess-indent").setup {
