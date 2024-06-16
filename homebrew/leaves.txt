@@ -1,0 +1,7 @@
+fzf
+gh
+zellij
+zoxide
+starship
+stow
+

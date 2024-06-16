@@ -10,6 +10,20 @@ return {
     end,
   },
   {
+    "pwntester/octo.nvim",
+    lazy = "VeryLazy",
+    cmd = { "Octo" },
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("octo").setup()
+    end,
+  },
+  {"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"},
+  {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
@@ -58,6 +72,21 @@ return {
     -- tag = "v2.15", -- uncomment to pin to a specific release
     init = function()
       -- VimTeX configuration goes here
+    end,
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = "VeryLazy",
+    opts = {},
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
     end,
   },
   { "nvim-telescope/telescope-ui-select.nvim" },

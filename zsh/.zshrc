@@ -49,3 +49,6 @@ if [ -f "/Users/aponce1509/miniforge3/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 source ~/.local/scripts/python_venv_activate
+
+# Zoxide
+eval "$(zoxide init zsh)"
