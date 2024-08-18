@@ -1,6 +1,6 @@
 alias tmk="tmux kill-session"
 alias tma="tmux attach"
-alias cd="z"
+# alias cd="z"
 
 # bindkey -s ^f "zellij_sessionizer\n"
 bindkey -s ^f "tmux-sessioner\n"
