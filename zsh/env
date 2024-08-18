@@ -3,6 +3,8 @@ export STOW_FOLDERS="zellij,bin,alacritty,yabai,tmux,spacebar,zsh,powerlevel10k,
 export DOTFILES=$HOME/.dotfiles
 export DEFAULT_CONDA_ENV="default"
 export EDITOR=/opt/homebrew/bin/nvim
+export PERSONAL_SECOND_BRAIN="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
+export WORK_SECOND_BRAIN="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
 
 startMongo() {
     sudo systemctl start mongod
