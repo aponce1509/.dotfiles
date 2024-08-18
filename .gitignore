@@ -6,3 +6,4 @@ __pycache__
 *.log
 *.fls
 .lazy.lua
+testdb.db
