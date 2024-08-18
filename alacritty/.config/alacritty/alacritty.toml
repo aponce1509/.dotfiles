@@ -13,11 +13,12 @@ background = "#0a0c10"
 foreground = "#f0f3f6"
 
 [env]
-TERM = "alacritty"
-term = "xterm-256color"
+TERM = "xterm-256color"
+# TERM = "alacritty"
+# term = "xterm-256color"
 
 [font]
-size = 15.0
+size = 14.0
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
