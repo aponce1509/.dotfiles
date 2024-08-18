@@ -19,7 +19,7 @@ map("n", "<leader>w", "<cmd> w <CR>", { desc = "Save file" })
 map("n", "<C-S-A-j>", "<cmd> w <CR>", { desc = "Save file" })
 map("n", "<leader>kj", function()
   local ft_cmds = {
-    python = "python3 " .. '"' .. vim.fn.expand "%" .. '"',
+    python = "python " .. '"' .. vim.fn.expand "%" .. '"',
   }
   require("nvchad.term").runner {
     pos = "sp",
@@ -32,7 +32,7 @@ map("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 map("n", "<leader>q", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Close buffer" })
---  format with conform
+-- format with conform
 map("n", "<leader>fm", function()
   require("conform").format()
 end, { desc = "formatting with conform" })
@@ -56,27 +56,27 @@ map("n", "<leader>jk", function()
   print(basenames)
   local conf = require("telescope.config").values
   require("telescope.pickers")
-    .new({}, {
-      prompt_title = "Map Of Content",
-      finder = require("telescope.finders").new_table {
-        results = basenames,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-      attach_mappings = function(prompt_bufnr)
-        require("telescope.actions.set").select:replace(function(_, type)
-          local entry = require("telescope.actions.state").get_selected_entry()
-          local basename = entry.value
-          local full_path = basename_to_path[basename]
-          if full_path then
-            require("telescope.actions").close(prompt_bufnr)
-            vim.cmd("edit " .. vim.fn.fnameescape(full_path))
-          end
-        end)
-        return true
-      end,
-    })
-    :find()
+      .new({}, {
+        prompt_title = "Map Of Content",
+        finder = require("telescope.finders").new_table {
+          results = basenames,
+        },
+        previewer = conf.file_previewer {},
+        sorter = conf.generic_sorter {},
+        attach_mappings = function(prompt_bufnr)
+          require("telescope.actions.set").select:replace(function(_, type)
+            local entry = require("telescope.actions.state").get_selected_entry()
+            local basename = entry.value
+            local full_path = basename_to_path[basename]
+            if full_path then
+              require("telescope.actions").close(prompt_bufnr)
+              vim.cmd("edit " .. vim.fn.fnameescape(full_path))
+            end
+          end)
+          return true
+        end,
+      })
+      :find()
 end, { desc = "List all the Indexes" })
 map(
   "n",
@@ -84,8 +84,7 @@ map(
   "<cmd>vsplit ~/OneDrive/Documents/2_areas/SecondBrain/Todo.md<CR>:vertical resize 65%<CR>",
   { desc = "Open todo.md in a vertically split window" }
 )
--- map("n", "<leader>jn","<cmd> ObsidianNew <CR>", {desc = "Obsidian New File)
-map("n", "<leader>jn", "<cmd> ObsidianSearch <CR>", { desc = "Obsidian New File" })
+map("n", "<leader>jn", "<cmd> ObsidianNew <CR>", { desc = "Obsidian New File" })
 map("n", "<leader>jo", "<cmd> ObsidianSearch <CR>", { desc = "Obsidian Search files" })
 map(
   "n",
@@ -161,7 +160,7 @@ map(
   "n",
   "<leader>ff",
   "<cmd> Telescope find_files find_command=rg,--no-ignore,--hidden,--glob=!**/.git/*"
-    .. ",--glob=!**/.mypy_cache/*,--glob=!**/__pycache__/*,--files <CR>",
+  .. ",--glob=!**/.mypy_cache/*,--glob=!**/__pycache__/*,--files <CR>",
   { desc = "Find files" }
 )
 

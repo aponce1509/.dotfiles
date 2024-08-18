@@ -37,6 +37,7 @@ M.treesitter = {
     "latex",
     "python",
     "vimdoc",
+    "astro"
   },
   indent = {
     enable = true,
@@ -70,6 +71,8 @@ M.mason = {
     "misspell",
     "cspell",
     "marksman",
+    "debugpy",
+    "astro-language-server",
   },
 }
 

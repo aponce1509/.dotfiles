@@ -22,7 +22,7 @@ return {
       require("octo").setup()
     end,
   },
-  {"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"},
+  { "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -92,7 +92,7 @@ return {
   { "nvim-telescope/telescope-ui-select.nvim" },
   {
     "nvim-neotest/neotest",
-    dependencies = { "antoinemadec/FixCursorHold.nvim" },
+    dependencies = { "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python" },
     config = function()
       require "configs.neotest"
     end,
@@ -306,9 +306,6 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
-    -- config = function(_, opts)
-    --   require("core.utils").load_mappings "dap"
-    -- end,
   },
   {
     "mfussenegger/nvim-dap-python",

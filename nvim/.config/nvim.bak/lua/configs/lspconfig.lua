@@ -35,27 +35,27 @@ lspconfig.pyright.setup {
     },
   },
 }
--- require("lspconfig").pylyzer.setup {
+-- lspconfig.pylyzer.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
---   {
+--   settings = {
 --     python = {
---       checkOnType = false,
---       diagnostics = false,
+--       -- checkOnType = false,
+--       -- diagnostics = false,
 --       inlayHints = true,
 --       smartCompletion = true,
 --     },
 --   },
 -- }
--- lspconfig.jedi_language_server.setup({
+-- lspconfig.jedi_language_server.setup {
 --   capabilities = capabilities,
 --   on_attach = on_attach,
--- init_options = {
---   completion = {
---     disableSnippets = true,
+--   init_options = {
+--     completion = {
+--       disableSnippets = true,
+--     },
 --   },
 -- }
--- })
 lspconfig.ruff_lsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,

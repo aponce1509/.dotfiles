@@ -23,8 +23,11 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.clipboard = ""
 
-g.maplocalleader = "\\"
 vim.o.conceallevel = 0
+
+local virtual = os.getenv "CONDA_PREFIX" or os.getenv "VIRTUAL_ENV" or "/usr"
+vim.g.loaded_python3_provider = 1
+vim.g.python3_host_prog = virtual .. '/bin/python3'
 
 opt.swapfile = false
 opt.backup = false

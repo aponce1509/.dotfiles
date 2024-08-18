@@ -27,7 +27,7 @@ local sources = {
   null_ls.builtins.diagnostics.mypy.with {
     extra_args = function()
       local virtual = os.getenv "CONDA_PREFIX" or os.getenv "VIRTUAL_ENV" or "/usr"
-      return { "--strict", "--python-executable", virtual .. "/bin/python3" }
+      return { "--strict", "--python-executable", virtual .. "/bin/python" }
     end,
   },
 
