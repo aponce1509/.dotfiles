@@ -27,9 +27,10 @@ return {
         hidden = false,
         -- command to run when the terminal is created. Combine with `use_shell`
         -- to run a terminal command before starting the task
-        on_create = function(term)
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes([[<C-\><C-n>]], true, true, true), '', true)
-        end,
+        on_create = nil,
+        -- on_create = function(term)
+        --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes([[<C-\><C-n>]], true, true, true), '', true)
+        -- end,
       },
     },
   }
