@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/repos ~/OneDrive/Documents -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(directory_finder ~/repos ~/OneDrive/Documents --depth 1 | fzf | sed 's/^[^)]*) *//') 
 fi
 
 if [[ -z $selected ]]; then

@@ -66,13 +66,14 @@ del("n", "<c-_>")
 function _runner_toggle()
   local Terminal = require("toggleterm.terminal").Terminal
   local ft_cmds = {
-    python = "python " .. '' .. vim.fn.expand("%") .. '"',
+    python = "python " .. '' .. vim.fn.expand("%"),
   }
+  -- print(ft_cmds[vim.bo.filetype])
   local runner = Terminal:new({
+    id = 0,
     cmd = ft_cmds[vim.bo.filetype],
     direction = "horizontal",
     display_name = "runner",
-    id = 0,
     close_on_exit = false,
     hidden = false,
   })

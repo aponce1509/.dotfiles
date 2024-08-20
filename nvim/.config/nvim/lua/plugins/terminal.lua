@@ -8,6 +8,20 @@ return {
       "ToggleTermSendVisualSelection", "TermExec",
       "ToggleTermToggleAll", "ToggleTerm",
     },
+    keys = {
+      { "<esc><esc>",      "<c-\\><c-n>",                                    desc = "Enter Normal Mode",             mode = "t" },
+      { "<leader>fs",      ":TermSelect<CR>",                                desc = "Select a hidden Terminal",      mode = "n" },
+      { "<C-\\>",          ":ToggleTerm direction=float name=base<CR>",      desc = "Open base floating terminal",   mode = "n" },
+      { "<leader>ft",      ":ToggleTerm direction=float name=base<CR>",      desc = "Open base floating terminal",   mode = "n" },
+      { "<localleader>ts", ":ToggleTerm direction=horizontal name=base<CR>", desc = "Open base horizontal terminal", mode = "n" },
+      { "<localleader>tv", ":ToggleTerm direction=vertical name=base<CR>",   desc = "Open base vertical terminal",   mode = "n" },
+      { "<C-h>",           "<cmd>wincmd h<cr>",                              desc = "Go to Left Window",             mode = "t" },
+      { "<C-j>",           "<cmd>wincmd j<cr>",                              desc = "Go to Lower Window",            mode = "t" },
+      { "<C-k>",           "<cmd>wincmd k<cr>",                              desc = "Go to Upper Window",            mode = "t" },
+      { "<C-l>",           "<cmd>wincmd l<cr>",                              desc = "Go to Right Window",            mode = "t" },
+      { "<C-\\>",          "<cmd>close<cr>",                                 desc = "Hide Terminal",                 mode = "t" },
+
+    },
     config = function()
       require("toggleterm").setup {
         -- size can be a number or function which is passed the current terminal
@@ -84,20 +98,6 @@ return {
         -- },
       }
     end,
-    keys = {
-      { "<esc><esc>",      "<c-\\><c-n>",                                    desc = "Enter Normal Mode",             mode = "t" },
-      { "<leader>fs",      ":TermSelect<CR>",                                desc = "Select a hidden Terminal",      mode = "n" },
-      { "<C-_>",           ":ToggleTerm direction=float name=base<CR>",      desc = "Open base floating terminal",   mode = "n" },
-      { "<leader>ft",      ":ToggleTerm direction=float name=base<CR>",      desc = "Open base floating terminal",   mode = "n" },
-      { "<localleader>ts", ":ToggleTerm direction=horizontal name=base<CR>", desc = "Open base horizontal terminal", mode = "n" },
-      { "<localleader>tv", ":ToggleTerm direction=vertical name=base<CR>",   desc = "Open base vertical terminal",   mode = "n" },
-      { "<C-h>",           "<cmd>wincmd h<cr>",                              desc = "Go to Left Window",             mode = "t" },
-      { "<C-j>",           "<cmd>wincmd j<cr>",                              desc = "Go to Lower Window",            mode = "t" },
-      { "<C-k>",           "<cmd>wincmd k<cr>",                              desc = "Go to Upper Window",            mode = "t" },
-      { "<C-l>",           "<cmd>wincmd l<cr>",                              desc = "Go to Right Window",            mode = "t" },
-      { "<C-_>",           "<cmd>close<cr>",                                 desc = "Hide Terminal",                 mode = "t" },
-
-    },
     -- lazy = false,
   }
 }
