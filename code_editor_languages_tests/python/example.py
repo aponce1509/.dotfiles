@@ -15,6 +15,11 @@ def main():
     hola("Mario")
 
 
+# Function to greet
+def greeting() -> None:
+    print("greeting")
+
+
 # buen días
 def hola(name: str) -> int:
     print(name)
