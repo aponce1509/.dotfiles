@@ -15,7 +15,7 @@ def hola():
     return None
 ```
 
-## Hay un cambio en el remoto
+## Esto es un conflicto de manual
 
 ## Installation
 
