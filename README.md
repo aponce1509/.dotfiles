@@ -15,8 +15,6 @@ def hola():
     return None
 ```
 
-## Esto es un conflicto de manual
-
 ## Installation
 
 Lo primero que tenemos que hacer es:
