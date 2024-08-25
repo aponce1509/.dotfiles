@@ -15,6 +15,8 @@ def hola():
     return None
 ```
 
+## Hagamos conflictos
+
 ## Installation
 
 Lo primero que tenemos que hacer es:
