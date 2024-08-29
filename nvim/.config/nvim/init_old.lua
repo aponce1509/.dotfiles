@@ -1,8 +1,6 @@
 local overrides = require "configs.overrides"
 
 return {
-
-
   -- TODO: esta como extra
   {
     "pwntester/octo.nvim",
