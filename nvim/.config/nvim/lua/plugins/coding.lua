@@ -1,11 +1,22 @@
 return {
   {
+    "zbirenbaum/copilot.lua",
+    keys = {
+      { "<leader>ua", "<Cmd>Copilot toggle<CR>", desc = "Toggle Copilot" }
+    },
+  },
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     build = "make",
+    keys = {
+      { "<leader>Aa", function() require("avante.api").ask() end,     desc = "avante: ask",    mode = { "n", "v" } },
+      { "<leader>Ar", function() require("avante.api").refresh() end, desc = "avante: refresh" },
+      { "<leader>Ae", function() require("avante.api").edit() end,    desc = "avante: edit",   mode = "v" },
+    },
     opts = {
       ---@alias Provider "openai" | "claude" | "azure"  | "copilot" | [string]
-      provider = "copilot",
+      provider = "openai",
       claude = {
         endpoint = "https://api.anthropic.com",
         model = "claude-3-5-sonnet-20240620",
