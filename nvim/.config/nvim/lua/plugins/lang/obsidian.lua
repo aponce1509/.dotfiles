@@ -98,6 +98,9 @@ return {
         second_brain_path = os.getenv("WORK_SECOND_BRAIN")
       end
       return {
+        ui = {
+          enable = false,
+        },
         workspaces = {
           {
             name = "personal",
