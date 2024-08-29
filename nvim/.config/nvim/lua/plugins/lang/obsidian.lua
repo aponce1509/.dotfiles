@@ -8,15 +8,56 @@ return {
     version = "*",
     keys = {
       {
-        "<leader>jk",
+        "<leader>jki",
+        function()
+          local file_lister = require("bin.file_lister")
+          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local folder = "00 - Map of Contents/00 - Index"
+          file_lister.show_list_files(root, folder, 1)
+        end,
+        desc = "List all the Indexes"
+      },
+      {
+        "<leader>jkr",
+        function()
+          local file_lister = require("bin.file_lister")
+          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local folder = "03 - Resources"
+          file_lister.show_list_files(root, folder, 1)
+        end,
+        desc = "List all the active Resources"
+      },
+      {
+        "<leader>jkp",
+        function()
+          local file_lister = require("bin.file_lister")
+          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local folder = "01 - Projects"
+          file_lister.show_list_files(root, folder, 1)
+        end,
+        desc = "List all the active Projects"
+      },
+      {
+        "<leader>jka",
+        function()
+          local file_lister = require("bin.file_lister")
+          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local folder = "02 - Areas"
+          file_lister.show_list_files(root, folder, 1)
+        end,
+        desc = "List all the active Areas"
+      },
+      {
+        "<leader>jkm",
         function()
           local file_lister = require("bin.file_lister")
           local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
           local folder = "00 - Map of Contents"
-          file_lister.show_list_files(root, folder) -- prompt_title will default to "00 - Map of Contents"
+          file_lister.show_list_files(root, folder, 1)
         end,
-        desc = "List all the Indexes"
+        desc = "List all the Map of Contents"
       },
+
       {
         "<leader>jd",
         "<cmd>vsplit ~/OneDrive/Documents/2_areas/SecondBrain/Todo.md<CR>:vertical resize 65%<CR>",
@@ -97,6 +138,7 @@ return {
         -- Retrieve the environment variable for macOS
         second_brain_path = os.getenv("WORK_SECOND_BRAIN")
       end
+      local nvim_templates = "/99 - Meta/Templates/Nvim"
       return {
         ui = {
           enable = false,
@@ -121,7 +163,7 @@ return {
           -- Optional, if you want to change the date format of the default alias of daily notes.
           alias_format = "%B %-d, %Y",
           -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-          template = second_brain_path .. "/99 - Meta/Templates/Nvim/daily.md",
+          template = second_brain_path .. nvim_templates .. "/daily.md",
         },
         wiki_link_func = function(opts)
           if opts.id == nil then
@@ -132,36 +174,6 @@ return {
             return string.format("[[%s]]", opts.id)
           end
         end,
-
-        -- mappings = {
-        --   -- "Obsidian follow"
-        --   ["<leader>of"] = {
-        --     action = function()
-        --       return require("obsidian").util.gf_passthrough()
-        --     end,
-        --     opts = { noremap = false, expr = true, buffer = true },
-        --   },
-        --   -- Toggle check-boxes "obsidian done"
-        --   ["<leader>od"] = {
-        --     action = function()
-        --       return require("obsidian").util.toggle_checkbox()
-        --     end,
-        --     opts = { buffer = true },
-        --   },
-        --   -- Create a new newsletter issue
-        --   ["<leader>onn"] = {
-        --     action = function()
-        --       return require("obsidian").commands.new_note("Newsletter-Issue")
-        --     end,
-        --     opts = { buffer = true },
-        --   },
-        --   ["<leader>ont"] = {
-        --     action = function()
-        --       return require("obsidian").util.insert_template("Newsletter-Issue")
-        --     end,
-        --     opts = { buffer = true },
-        --   },
-        -- },
         -- Specify how to handle attachments.
         attachments = {
           -- The default folder to place images in via `:ObsidianPasteImg`.

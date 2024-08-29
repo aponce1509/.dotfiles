@@ -2,41 +2,43 @@
 --- @class FileLister
 local M = {}
 
---- List files in specified folders recursively.
+--- List files in specified folders recursively up to a maximum depth.
 --- @param root string The root directory path
 --- @param folders string|string[] A folder or list of folders to search
+--- @param max_depth number|nil The maximum depth to search (nil for infinite depth)
 --- @return string[] List of file paths
-function M.list_files(root, folders)
+function M.list_files(root, folders, max_depth)
   local files = {}
   local folder_list = type(folders) == "string" and { folders } or folders
-
-  local function add_files_recursively(dir)
+  local function add_files_recursively(dir, current_depth)
+    if max_depth and current_depth > max_depth then
+      return
+    end
     local ok, result = pcall(vim.fn.glob, dir .. "/*")
     if ok and result then
       for entry in result:gmatch "[^\n]+" do
         if vim.fn.isdirectory(entry) == 1 then
-          add_files_recursively(entry)
+          add_files_recursively(entry, current_depth + 1)
         else
           table.insert(files, entry)
         end
       end
     end
   end
-
   for _, folder in ipairs(folder_list) do
-    add_files_recursively(root .. folder)
+    add_files_recursively(root .. folder, 1)
   end
-
   return files
 end
 
 --- Show Telescope picker with list of files.
 --- @param root string The root directory path
 --- @param folders string|string[] A folder or list of folders to search
+--- @param max_depth number|nil The maximum depth to search (nil for infinite depth)
 --- @param prompt_title? string Optional custom prompt title
-function M.show_list_files(root, folders, prompt_title)
+function M.show_list_files(root, folders, max_depth, prompt_title)
   local folder_list = type(folders) == "string" and { folders } or folders
-  local selected_files = M.list_files(root, folder_list)
+  local selected_files = M.list_files(root, folder_list, max_depth)
   local basename_to_path = {}
   local display_to_path = {}
 
