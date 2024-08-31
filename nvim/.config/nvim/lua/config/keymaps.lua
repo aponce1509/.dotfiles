@@ -103,18 +103,18 @@ del("n", "<leader>gL")
 del("n", "<leader>gg")
 del("n", "<leader>gG")
 del("n", "<leader>gb")
-map("n", "<leader>gl", function()
-  LazyVim.lazygit({
-    cwd = LazyVim.root.git(),
-  })
-end, {
-  desc = "Lazygit (Root Dir)",
-})
-map("n", "<leader>gL", function()
-  LazyVim.lazygit()
-end, {
-  desc = "Lazygit (cwd)",
-})
+-- map("n", "<leader>gl", function()
+--   LazyVim.lazygit({
+--     cwd = LazyVim.root.git(),
+--   })
+-- end, {
+--   desc = "Lazygit (Root Dir)",
+-- })
+-- map("n", "<leader>gL", function()
+--   LazyVim.lazygit()
+-- end, {
+--   desc = "Lazygit (cwd)",
+-- })
 map("n", "<leader>gg", function()
   LazyVim.lazygit({
     args = { "log" },
