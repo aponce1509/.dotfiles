@@ -1,5 +1,6 @@
 return {
   {
+    -- https://github.com/epwalsh/obsidian.nvim
     "epwalsh/obsidian.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -99,7 +100,7 @@ return {
       },
       {
         "<leader>jm",
-        "<cmd> ObsidianTemplates <CR>",
+        "<cmd> ObsidianTemplate <CR>",
         desc = "Obsidian Insert Template"
       },
       {
