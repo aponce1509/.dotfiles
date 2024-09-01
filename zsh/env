@@ -1,7 +1,7 @@
 # export STOW_FOLDERS="bin,nvim,tmux,uwuntu,netflix,personal,i3,zsh,xkb"
 export WORK_ENV="personal"
 # export WORK_ENV="work"
-export STOW_FOLDERS="zellij,bin,alacritty,yabai,tmux,spacebar,zsh,powerlevel10k,nvim,starship"
+# export STOW_FOLDERS="zellij,bin,alacritty,yabai,tmux,spacebar,zsh,powerlevel10k,nvim,starship"
 export DOTFILES=$HOME/.dotfiles
 export DEFAULT_CONDA_ENV="default"
 export EDITOR=/opt/homebrew/bin/nvim
