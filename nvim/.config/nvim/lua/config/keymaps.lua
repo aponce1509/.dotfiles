@@ -93,6 +93,7 @@ del("t", "<c-_>")
 del("n", "<S-h>")
 del("n", "<S-l>")
 
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<leader>q", LazyVim.ui.bufremove, { desc = "Delete Buffer" })

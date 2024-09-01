@@ -9,7 +9,7 @@ return {
       "ToggleTermToggleAll", "ToggleTerm",
     },
     keys = {
-      { "<esc><esc>",      "<c-\\><c-n>",                                    desc = "Enter Normal Mode",             mode = "t" },
+      -- { "<esc><esc>",      "<c-\\><c-n>",                                    desc = "Enter Normal Mode",             mode = "t" },
       { "<leader>fs",      ":TermSelect<CR>",                                desc = "Select a hidden Terminal",      mode = "n" },
       { "<C-\\>",          ":ToggleTerm direction=float name=base<CR>",      desc = "Open base floating terminal",   mode = "n" },
       { "<leader>ft",      ":ToggleTerm direction=float name=base<CR>",      desc = "Open base floating terminal",   mode = "n" },
@@ -98,6 +98,6 @@ return {
         -- },
       }
     end,
-    -- lazy = false,
+    lazy = false,
   }
 }
