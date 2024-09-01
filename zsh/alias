@@ -9,6 +9,7 @@ alias tms="tmux switch-client -t"
 bindkey -s ^f "tmux-sessioner\n"
 bindkey -s ^g "tmuxifier-session aponce\n"
 bindkey -s ^n "tmuxifier-session\n"
+bindkey -s ^o "clear\n"
 
 # Eza
 alias l="eza --icons --git -a"
