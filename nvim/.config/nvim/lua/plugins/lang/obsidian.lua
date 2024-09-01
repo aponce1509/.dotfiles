@@ -127,18 +127,18 @@ return {
       },
     },
     opts = function()
-      local is_windows = package.config:sub(1, 1) == '\\'
-
-      -- Define the variable based on the OS
-      local second_brain_path
-
-      if is_windows then
-        -- Retrieve the environment variable for Windows
-        second_brain_path = os.getenv("PERSONAL_SECOND_BRAIN")
-      else
-        -- Retrieve the environment variable for macOS
-        second_brain_path = os.getenv("WORK_SECOND_BRAIN")
-      end
+      -- local is_windows = package.config:sub(1, 1) == '\\'
+      --
+      -- -- Define the variable based on the OS
+      --
+      -- if is_windows then
+      --   -- Retrieve the environment variable for Windows
+      --   second_brain_path = os.getenv("PERSONAL_SECOND_BRAIN")
+      -- else
+      --   -- Retrieve the environment variable for macOS
+      --   second_brain_path = os.getenv("WORK_SECOND_BRAIN")
+      -- end
+      local second_brain_path = os.getenv("SECOND_BRAIN_PATH")
       local nvim_templates = "/99 - Meta/Templates/Nvim"
       return {
         ui = {

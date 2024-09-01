@@ -3,6 +3,7 @@ alias tma="tmux attach"
 alias tmxs="tmuxier load-session"
 alias tms="tmux switch-client -t"
 # alias cd="z"
+# alias bat="batcat"
 
 # bindkey -s ^f "zellij_sessionizer\n"
 bindkey -s ^f "tmux-sessioner\n"

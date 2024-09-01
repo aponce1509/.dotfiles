@@ -3,3 +3,5 @@ addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.config/tmux/plugins/tmuxifier/bin
 
 export PYTHONPATH="${PYTHONPATH}:${HOME}/.local/scripts"
+
+# TODO: work pc has its own path

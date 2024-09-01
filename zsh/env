@@ -1,10 +1,19 @@
 # export STOW_FOLDERS="bin,nvim,tmux,uwuntu,netflix,personal,i3,zsh,xkb"
+export WORK_ENV="personal"
+# export WORK_ENV="work"
 export STOW_FOLDERS="zellij,bin,alacritty,yabai,tmux,spacebar,zsh,powerlevel10k,nvim,starship"
 export DOTFILES=$HOME/.dotfiles
 export DEFAULT_CONDA_ENV="default"
 export EDITOR=/opt/homebrew/bin/nvim
+
 export PERSONAL_SECOND_BRAIN="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
-export WORK_SECOND_BRAIN="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
+export WORK_SECOND_BRAIN="~/notes/"
+if [[ $WORK_ENV = "work" ]]; then
+  export SECOND_BRAIN_PATH=$WORK_SECOND_BRAIN
+elif [[ $WORK_ENV = "personal" ]]; then
+  export SECOND_BRAIN_PATH=$PERSONAL_SECOND_BRAIN
+fi
+
 export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmux/tmux-layouts"
 
 startMongo() {
