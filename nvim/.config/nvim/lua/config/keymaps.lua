@@ -98,6 +98,10 @@ map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<leader>q", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
 
+-- Python
+map("n", "<leader>nc", "O# %%<ESC>j", { noremap = true })
+map("n", "<leader>nm", "O# %% [markdown]<CR> <ESC>", { noremap = true })
+
 -- lazygit
 del("n", "<leader>gl")
 del("n", "<leader>gL")

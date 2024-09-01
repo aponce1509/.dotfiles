@@ -2,6 +2,8 @@ from sys import path
 
 import pandas as pd
 
+# %%
+
 
 def hello() -> int:
     print(path)
@@ -15,6 +17,7 @@ def main():
     hola("Mario")
 
 
+# %%
 # Function to greet
 def greeting() -> None:
     print("greeting")
