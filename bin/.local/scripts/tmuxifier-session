@@ -1,0 +1,71 @@
+#!/usr/bin/env zsh
+# This could be used inside tmux or outside.
+# arguments: session-name
+# if not provided list all sessions using fzf.
+# The sessions are sh files in $TMUXIFIER_LAYOUT_PATH the name can be extracted from the file name. session_name.session.sh
+# Outside behaviour
+# 1. If session exists, attach to it.
+# 2. If session does not exist, create it.
+# Inside behaviour
+# 1. If session exists, swicht to it.
+# 2. If session does not exist, create it swicht to it.
+
+# Check if tmux is installed
+if ! command -v tmux &> /dev/null; then
+    echo "tmux is not installed. Please install it first."
+    exit 1
+fi
+
+# Check if fzf is installed
+if ! command -v fzf &> /dev/null; then
+    echo "fzf is not installed. Please install it first."
+    exit 1
+fi
+
+# Function to list all session files
+list_sessions() {
+    ls $TMUXIFIER_LAYOUT_PATH/*.session.sh | xargs -n1 basename | sed 's/\.session\.sh$//'
+}
+# Function to create or switch to a session
+manage_session() {
+    local session_name=$1
+    local inside_tmux=$2
+
+    if tmux has-session -t "$session_name" 2>/dev/null; then
+        if [ "$inside_tmux" = true ]; then
+            tmux switch-client -t "$session_name"
+        else
+            tmux attach-session -t "$session_name"
+        fi
+    else
+        # Create the session using tmuxifier
+        tmuxifier load-session "$session_name"
+        tmux attach-session -t "$session_name"
+    fi
+}
+
+# Check if we're inside tmux
+if [ -n "$TMUX" ]; then
+    inside_tmux=true
+else
+    inside_tmux=false
+fi
+
+# Main logic
+if [ $# -eq 0 ]; then
+    # No argument provided, use fzf to select a session
+    session_name=$(list_sessions | fzf --prompt="Select a session: ")
+    if [ -z "$session_name" ]; then
+        echo "No session selected. Exiting."
+        exit 0
+    fi
+else
+    session_name=$1
+fi
+
+# If inside tmux and the session doesn't exist, we need to detach and rerun the script
+if [ "$inside_tmux" = true ] && ! tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux detach-client -E "$(realpath $0) $session_name"
+else
+    manage_session "$session_name" "$inside_tmux"
+fi

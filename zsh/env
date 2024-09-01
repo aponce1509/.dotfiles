@@ -5,6 +5,7 @@ export DEFAULT_CONDA_ENV="default"
 export EDITOR=/opt/homebrew/bin/nvim
 export PERSONAL_SECOND_BRAIN="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
 export WORK_SECOND_BRAIN="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
+export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmux/tmux-layouts"
 
 startMongo() {
     sudo systemctl start mongod

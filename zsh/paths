@@ -1,4 +1,5 @@
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
+addToPathFront $HOME/.config/tmux/plugins/tmuxifier/bin
 
 export PYTHONPATH="${PYTHONPATH}:${HOME}/.local/scripts"

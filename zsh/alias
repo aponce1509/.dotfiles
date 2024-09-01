@@ -1,9 +1,13 @@
 alias tmk="tmux kill-session"
 alias tma="tmux attach"
+alias tmxs="tmuxier load-session"
+alias tms="tmux switch-client -t"
 # alias cd="z"
 
 # bindkey -s ^f "zellij_sessionizer\n"
 bindkey -s ^f "tmux-sessioner\n"
+bindkey -s ^g "tmuxifier-session aponce\n"
+bindkey -s ^n "tmuxifier-session\n"
 
 # Eza
 alias l="eza --icons --git -a"

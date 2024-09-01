@@ -56,3 +56,5 @@ PATH=$CONDA_BIN_PATH:$PATH
 eval "$(zoxide init zsh)"
 # PATH="$PATH:/opt/homebrew"
 
+# Tmuxifier
+eval "$(tmuxifier init -)"
