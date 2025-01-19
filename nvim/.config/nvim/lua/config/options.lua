@@ -44,6 +44,9 @@ opt.isfname:append("@-@")
 opt.updatetime = 50
 opt.colorcolumn = "88"
 
+vim.g.lazyvim_blink_main = false
+vim.g.lazyvim_cmp = "nvim-cmp"
+
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --   desc = "Auto select virtualenv Nvim open",
 --   pattern = "*",

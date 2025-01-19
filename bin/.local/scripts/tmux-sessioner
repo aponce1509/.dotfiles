@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [ -n "$WEZTERM_CONFIG_DIR" ]; then
+  # If we are in wezterm execute wez-sessioner passing the args passed to this command
+  wez-sessioner "$@"
+  exit 0
+fi
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else

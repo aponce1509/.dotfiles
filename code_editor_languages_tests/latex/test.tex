@@ -1,24 +1,38 @@
 \documentclass{article}
+\usepackage[utf8]{inputenc}
 
-% These are only here for the sake of this tutorial.
-\usepackage{amsmath}
-\newcommand{\lt}{\textbackslash{}lt }
-\newcommand{\lk}{\textbackslash{}lk }
-\newcommand{\lv}{\textbackslash{}lv }
-\newcommand{\lc}{\textbackslash{}lc }
-\renewcommand{\ll}{\textbackslash{}ll }
-\renewcommand{\le}{\textbackslash{}le }
+\title{Example of LaTeX with BibTeX}
+\author{Author Name}
+\date{\today}
 
 \begin{document}
 
-\section{Compiling}
+\maketitle
 
-Press \ll to start (or stop) compiling the document.
-This turns on automatic compiling if supported by your compiler, meaning your
-document will be compiled each time you save.
+\section{Schr\"odinger Equation}
+The time-dependent Schr\"odinger equation is given by:
+\begin{equation}
+  i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r}, t) = \hat{H}
+  \Psi(\mathbf{r}, t),
+\end{equation}
+where $\hat{H}$ is the Hamiltonian operator.
 
-Press \lk to stop the compilation process
+\section{Introduction}
+This is an example document that includes a bibliography using
+BibTeX. As shown in \cite{lamport1994latex}, LaTeX is a powerful tool
+for typesetting documents.
 
-Press \lc to clear auxiliary files.
+\section{Conclusion}
+LaTeX combined with BibTeX simplifies the management of references in
+academic and technical documents \cite{knuth1984tex}.
 
+$$\sigma$$
 
+\begin{math}
+  \Sigma
+\end{math}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

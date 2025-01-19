@@ -19,14 +19,20 @@ def main():
 
 # %%
 # Function to greet
-def greeting() -> None:
+def greeting() -> pd.DataFrame:
     print("greeting")
+    return pd.DataFrame()
 
 
 # buen días
 def hola(name: str) -> int:
+    pd.DataFrame()
     print(name)
     return 0
+
+
+def hola_pasado() -> None:
+    hola("Juan")
 
 
 # Create a session

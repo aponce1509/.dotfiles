@@ -6,8 +6,10 @@ export DOTFILES=$HOME/.dotfiles
 export DEFAULT_CONDA_ENV="default"
 export EDITOR=/opt/homebrew/bin/nvim
 
-export PERSONAL_SECOND_BRAIN="/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
+export PERSONAL_SECOND_BRAIN="/Users/aponce1509/repos/new_second_brain"
 export WORK_SECOND_BRAIN="~/notes/"
+
+
 if [[ $WORK_ENV = "work" ]]; then
   export SECOND_BRAIN_PATH=$WORK_SECOND_BRAIN
 elif [[ $WORK_ENV = "personal" ]]; then
@@ -15,6 +17,9 @@ elif [[ $WORK_ENV = "personal" ]]; then
 fi
 
 export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmux/tmux-layouts"
+
+# bun completions
+[ -s "/Users/aponce1509/.bun/_bun" ] && source "/Users/aponce1509/.bun/_bun"
 
 startMongo() {
     sudo systemctl start mongod

@@ -1,3 +1,5 @@
+-- raise a error if the env var is not set
+local root_path = os.getenv("SECOND_BRAIN_PATH") or error("SECOND_BRAIN_PATH is not set")
 return {
   {
     -- https://github.com/epwalsh/obsidian.nvim
@@ -7,12 +9,20 @@ return {
     },
     lazy = false,
     version = "*",
+
     keys = {
+      {
+        "<leader>jJ",
+        function()
+          return require("obsidian").util.smart_action()
+        end,
+        desc = "Smart obsidian action: Todo or follow"
+      },
       {
         "<leader>jki",
         function()
           local file_lister = require("bin.file_lister")
-          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local root = root_path
           local folder = "00 - Map of Contents/00 - Index"
           file_lister.show_list_files(root, folder, 1)
         end,
@@ -22,7 +32,7 @@ return {
         "<leader>jkr",
         function()
           local file_lister = require("bin.file_lister")
-          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local root = root_path
           local folder = "03 - Resources"
           file_lister.show_list_files(root, folder, 1)
         end,
@@ -32,7 +42,7 @@ return {
         "<leader>jkp",
         function()
           local file_lister = require("bin.file_lister")
-          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local root = root_path
           local folder = "01 - Projects"
           file_lister.show_list_files(root, folder, 1)
         end,
@@ -42,7 +52,7 @@ return {
         "<leader>jka",
         function()
           local file_lister = require("bin.file_lister")
-          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local root = root_path
           local folder = "02 - Areas"
           file_lister.show_list_files(root, folder, 1)
         end,
@@ -52,7 +62,7 @@ return {
         "<leader>jkm",
         function()
           local file_lister = require("bin.file_lister")
-          local root = "/Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain/"
+          local root = root_path
           local folder = "00 - Map of Contents"
           file_lister.show_list_files(root, folder, 1)
         end,
@@ -61,10 +71,11 @@ return {
 
       {
         "<leader>jd",
-        "<cmd>vsplit ~/OneDrive/Documents/2_areas/SecondBrain/Todo.md<CR>:vertical resize 65%<CR>",
+        "<cmd>vsplit" .. root_path .. "Todo.md<CR>:vertical resize 65%<CR>",
         desc = "Open todo.md in a vertically split window"
       },
 
+      { "<leader>jr", "<cmd> ObsidianRename <CR>", desc = "Obsidian New File" },
       { "<leader>jn", "<cmd> ObsidianNew <CR>",    desc = "Obsidian New File" },
       { "<leader>jo", "<cmd> ObsidianSearch <CR>", desc = "Obsidian Search files" },
       {
@@ -144,6 +155,13 @@ return {
         ui = {
           enable = false,
         },
+        follow_url_func = function(url)
+          -- Open the URL in the default web browser.
+          vim.fn.jobstart({ "open", url }) -- Mac OS
+          -- vim.fn.jobstart({"xdg-open", url})  -- linux
+          -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
+          -- vim.ui.open(url) -- need Neovim 0.10.0+
+        end,
         workspaces = {
           {
             name = "personal",
@@ -154,8 +172,8 @@ return {
           nvim_cmp = true,
           min_chars = 2,
         },
-        new_notes_location = "notes_subdir",
         notes_subdir = "09 - Inbox",
+        new_notes_location = "notes_subdir",
         daily_notes = {
           -- Optional, if you keep daily notes in a separate directory.
           folder = "07 - Daily",
@@ -191,7 +209,7 @@ return {
         },
         note_frontmatter_func = function(note)
           -- This is equivalent to the default frontmatter function.
-          local out = {}
+          local out = { tags = note.tags }
           -- `note.metadata` contains any manually added fields in the frontmatter.
           -- So here we just make sure those fields are kept in the frontmatter.
           if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then

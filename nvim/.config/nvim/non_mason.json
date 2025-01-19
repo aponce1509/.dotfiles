@@ -1,0 +1,76 @@
+{
+  "lsp servers": [
+    {
+      "lang": "json",
+      "type": "ls",
+      "install": "sudo npm i -g vscode-langservers-extracted",
+      "comments": "Hay que ver como gestionarlo en windows sin sudo"
+    },
+    {
+      "lang": "lua",
+      "type": "formater",
+      "install": "cargo install stylua --features lua54 ",
+      "comments": null
+    },
+    {
+      "lang": "lua",
+      "type": "ls",
+      "install": "brew install lua-language-server ",
+      "comments": null
+    },
+    {
+      "lang": "shfmt",
+      "type": "formater",
+      "install": "curl -sS https://webi.sh/shfmt | sh  ",
+      "comments": "TODO: windows"
+    },
+    {
+      "lang": "markdown",
+      "type": "ls",
+      "install": "brew install marksman",
+      "comments": "TODO: windows"
+    },
+    {
+      "lang": "markdown",
+      "type": "formater",
+      "install": "sudo npm install markdownlint-cli2 --global",
+      "comments": "TODO: windows"
+    },
+    {
+      "lang": "python",
+      "type": "ls",
+      "install": "sudo npm install -g pyright",
+      "comments": null
+    },
+    {
+      "lang": "python",
+      "type": "linter",
+      "install": "pipx install ruff",
+      "comments": null
+    },
+    {
+      "lang": "python",
+      "type": "linter",
+      "install": "pipx install mypy",
+      "comments": null
+    },
+    {
+      "lang": "python",
+      "type": "formater",
+      "install": "pipx install black",
+      "comments": null
+    },
+    {
+      "lang": "tex",
+      "type": "formater",
+      "install": "cargo install --git 'https://github.com/wgunderwood/tex-fmt'",
+      "comments": null
+    },
+    {
+      "lang": "tex",
+      "type": "ls",
+      "install": "cargo install --git https://github.com/latex-lsp/texlab --locked --tag v5.21.0",
+      "comments": null
+    }
+  ]
+}

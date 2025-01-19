@@ -1,6 +1,14 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept_word = "<C-l>",
+        },
+      },
+    },
     keys = {
       { "<leader>ua", "<Cmd>Copilot toggle<CR>", desc = "Toggle Copilot" }
     },
@@ -78,13 +86,13 @@ return {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below is optional, make sure to setup it properly if you have lazy=true
-      {
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "Avante" },
-        },
-        ft = { "Avante" },
-      },
+      -- {
+      --   'MeanderingProgrammer/render-markdown.nvim',
+      --   opts = {
+      --     file_types = { "Avante" },
+      --   },
+      --   ft = { "Avante" },
+      -- },
     },
   },
 }

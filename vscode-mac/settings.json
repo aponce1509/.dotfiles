@@ -1,4 +1,5 @@
 {
+    "editor.tabCompletion": "off",
     // VS Code general
     "files.eol": "\n",
     "workbench.settings.editor": "json",
@@ -251,5 +252,9 @@
         { "before": ["leader", "/"], "commands": ["editor.action.commentLine"] }
     ],
     "git.suggestSmartCommit": false,
-    "terminal.integrated.fontFamily": "Hack Nerd Font"
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "github.copilot.enable": {
+        "quarto": false,
+        "*": true
+    }
 }

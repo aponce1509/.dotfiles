@@ -1,0 +1,63 @@
+#!/usr/bin/env zsh
+# TODO: Relative paths do not work
+#
+# This could be used inside tmux or outside.
+# arguments: session-name
+# if not provided list all sessions using fzf.
+# The sessions are sh files in $TMUXIFIER_LAYOUT_PATH the name can be extracted from the file name. session_name.session.sh
+# Outside behaviour
+# 1. If session exists, attach to it.
+# 2. If session does not exist, create it.
+# Inside behaviour
+# 1. If session exists, swicht to it.
+# 2. If session does not exist, create it swicht to it.
+
+# Check if wezterm is installed
+if ! command -v wezterm &> /dev/null; then
+    echo "wezterm is not installed. Please install it first."
+    exit 1
+fi
+
+
+# Check if we are in a wezterm
+if ! [ -n "$WEZTERM_CONFIG_DIR" ]; then
+    echo "You have to execute this in a wezterm terminal"
+    exit 1
+fi
+
+# Check if fzf is installed
+if ! command -v fzf &> /dev/null; then
+    echo "fzf is not installed. Please install it first."
+    exit 1
+fi
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(directory_finder ~/repos ~/repos/programming-reference/python/apm_python_ref/ ~/OneDrive/Documents --depth 1 | fzf | sed 's/^[^)]*) *//') 
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+workspace_cwd=$(echo "$selected" | sed 's/^[^[:alnum:]/.]*//')
+
+
+# Switch to or create a workspace in WezTerm
+wswitch-workspace() {
+  printf "\033]1337;SetUserVar=%s=%s\007" hacky-user-command $(printf '{"cmd":"switch-workspace", "cwd":"%s","name":"%s"}' "$2" "$1" | base64)
+}
+
+selected_name=$(basename "$selected" | tr . _)
+
+wswitch-workspace $selected_name $workspace_cwd
+
+# Check if --kill is passed as an argument
+# for arg in "$@"; do
+#   if [[ "$arg" == "--kill" ]]; then
+wezterm cli kill-pane
+exit 1
+#     exit 0
+#   fi
+# done

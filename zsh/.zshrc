@@ -48,6 +48,7 @@ if [ -f "$HOME/miniforge3/etc/profile.d/mamba.sh" ]; then
     . "$HOME/miniforge3/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
+
 source ~/.local/scripts/python_venv_activate
 CONDA_BIN_PATH="$(conda info --base)/envs/$(basename $CONDA_DEFAULT_ENV)/bin"
 PATH=$CONDA_BIN_PATH:$PATH
@@ -58,3 +59,7 @@ eval "$(zoxide init zsh)"
 
 # Tmuxifier
 eval "$(tmuxifier init -)"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+

@@ -38,6 +38,7 @@ alias gre='git reset'
 
 # VIM
 alias v="/opt/homebrew/bin/nvim"
+alias lazy='cd ~/.local/share/nvim/lazy && nvim'
 
 # Docker
 alias dco="docker compose"
@@ -52,3 +53,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+
+# Wezterm
+alias wzs="nohup wezterm start > /dev/null 2>&1 &"

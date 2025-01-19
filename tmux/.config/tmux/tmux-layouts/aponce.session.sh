@@ -7,21 +7,22 @@ session_root "~"
 if initialize_session "aponce"; then
   new_window "main"
   new_window "notes"
-  run_cmd "cd /Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
+  run_cmd "cd /Users/aponce1509/repos/new_second_brain/"
   run_cmd "clear"
   run_cmd "nvim '00 - Start Here.md'"
-  split_v 20
-  run_cmd "cd /Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
-  run_cmd "clear"
-  run_cmd "nvim './07 - Daily/_day.md'"
-  split_h 50
-  run_cmd "cd /Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
-  run_cmd "clear"
-  run_cmd "nvim './07 - Daily/_sites.md'"
   select_pane 0
   new_window "todo"
-  run_cmd "cd /Users/aponce1509/OneDrive/Documents/2_areas/SecondBrain"
+  run_cmd "cd /Users/aponce1509/repos/new_second_brain/"
   run_cmd "nvim todo.md"
+  split_h
+  # run_cmd "cd /Users/aponce1509/repos/new_second_brain/"
+  # run_cmd "clear"
+  # run_cmd "nvim './07 - Daily/_sites.md'"
+  # split_h 33
+  run_cmd "cd /Users/aponce1509/repos/new_second_brain/"
+  run_cmd "clear"
+  run_cmd "nvim './07 - Daily/_day.md'"
+  select_pane 0
 
   select_window "main"
 

@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{knuth1984tex}
+Donald~Ervin Knuth.
+\newblock {\em The TeXbook}, volume~A.
+\newblock Addison-Wesley, 1984.
+
+\bibitem{lamport1994latex}
+Leslie Lamport.
+\newblock {\em LaTeX: A Document Preparation System}.
+\newblock Addison-Wesley, 1994.
+
+\end{thebibliography}

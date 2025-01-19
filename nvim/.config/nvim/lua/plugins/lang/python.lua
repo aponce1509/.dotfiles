@@ -128,4 +128,20 @@ return {
       { "<leader>nk",   function() require('nvim-python-repl').open_repl() end,                 desc = "Opens the REPL in a window split" },
     },
   },
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        pyright = {
+          settings = {
+            python = {
+              analysis = { diagnosticMode = "off", typeCheckingMode = "off" },
+            },
+          },
+        },
+      },
+    },
+  }
 }
