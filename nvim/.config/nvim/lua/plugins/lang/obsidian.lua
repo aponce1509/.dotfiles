@@ -169,7 +169,7 @@ return {
           },
         },
         completion = {
-          nvim_cmp = true,
+          nvim_cmp = false,
           min_chars = 2,
         },
         notes_subdir = "09 - Inbox",

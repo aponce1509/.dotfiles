@@ -1,7 +1,4 @@
 return {
-  -- Additional Plug-ins
-  -- LazyVim Plug-ins
-  { "linux-cultist/venv-selector.nvim", enabled = false },
   -- Mason dependencies
   {
     "williamboman/mason.nvim",
@@ -110,23 +107,6 @@ return {
     opts = function(_, opts)
       opts.formatters_by_ft = { python = { "black" } }
     end,
-  },
-  {
-    "geg2102/nvim-python-repl",
-    dependencies = { "nvim-treesitter", "mini.ai" },
-    ft = { "python", "lua", "scala" },
-    opts = {
-      execute_on_send = true,
-      vsplit = true,
-    },
-    keys = {
-      { "<leader>nj",   function() require('nvim-python-repl').send_statement_definition() end, desc = "Send semantic unit to REPL" },
-      { "<leader><CR>", function() require('nvim-python-repl').send_visual_to_repl() end,       desc = "Send visual selection to REPL",                   mode = "v" },
-      { "<leader>nf",   function() require('nvim-python-repl').send_buffer_to_repl() end,       desc = "Send entire buffer to REPL" },
-      { "<leader>ne",   function() require('nvim-python-repl').toggle_execute() end,            desc = "Automatically execute command in REPL after sent" },
-      { "<leader>nv",   function() require('nvim-python-repl').toggle_vertical() end,           desc = "Create REPL in vertical or horizontal split" },
-      { "<leader>nk",   function() require('nvim-python-repl').open_repl() end,                 desc = "Opens the REPL in a window split" },
-    },
   },
   {
     "neovim/nvim-lspconfig",

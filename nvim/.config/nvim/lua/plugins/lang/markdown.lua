@@ -19,34 +19,34 @@ return {
       -- vim.g.bullets_set_mappings = 1
     end,
   },
-  {
-    "jmbuhr/otter.nvim",
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {},
-    config = function()
-      local otter = require "otter"
-      otter.setup {
-        lsp = {
-          diagnostic_update_events = { "InsertLeave" },
-        },
-        buffers = {
-          set_filetype = true,
-        },
-      }
-    end,
-    init = function()
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        pattern = { "*.md", "*.mdx", "*.org", "*.norg", "*.ipynb" },
-        callback = function()
-          require("otter").activate()
-        end,
-      })
-    end,
-    ft = { "markdown", "org", "norg" },
-  },
+  -- {
+  --   "jmbuhr/otter.nvim",
+  --   dependencies = {
+  --     "hrsh7th/nvim-cmp",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   opts = {},
+  --   config = function()
+  --     local otter = require "otter"
+  --     otter.setup {
+  --       lsp = {
+  --         diagnostic_update_events = { "InsertLeave" },
+  --       },
+  --       buffers = {
+  --         set_filetype = true,
+  --       },
+  --     }
+  --   end,
+  --   init = function()
+  --     vim.api.nvim_create_autocmd("BufWritePost", {
+  --       pattern = { "*.md", "*.mdx", "*.org", "*.norg", "*.ipynb" },
+  --       callback = function()
+  --         require("otter").activate()
+  --       end,
+  --     })
+  --   end,
+  --   ft = { "markdown", "org", "norg" },
+  -- },
   {
     "stevearc/conform.nvim",
     optional = true,
