@@ -1,5 +1,17 @@
 return {
   {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        {
+          mode = { "n", "v" },
+          { "<leader>P", group = "hunks" },
+        },
+      },
+    },
+
+  },
+  {
     "tpope/vim-fugitive",
     cmd = "Git",
     keys = {
@@ -12,27 +24,18 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     keys = {
-      { "<leader>gi", ":Gitsigns preview_hunk<CR>",              desc = "Git Preview Hunk" },
-      { "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", desc = "Git blame toggle" },
+      { "<leader>gn", ":Gitsigns preview_hunk<CR>",                                       desc = "Git Preview Hunk" },
+      { "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>",                          desc = "Git blame toggle" },
+      { "<leader>Ps", ":Gitsigns stage_hunk<CR>",                                         desc = "Stage Hunk",         mode = { "n", "v" } },
+      { "<leader>Pr", ":Gitsigns reset_hunk<CR>",                                         desc = "Reset Hunk",         mode = { "n", "v" } },
+      { "<leader>PS", function() package.loaded.gitsigns.stage_buffer() end,              desc = "Stage Buffer" },
+      { "<leader>Pu", function() package.loaded.gitsigns.undo_stage_hunk() end,           desc = "Undo Stage Hunk" },
+      { "<leader>PR", function() package.loaded.gitsigns.reset_buffer() end,              desc = "Reset Buffer" },
+      { "<leader>Pp", function() package.loaded.gitsigns.preview_hunk_inline() end,       desc = "Preview Hunk Inline" },
+      { "<leader>Pb", function() package.loaded.gitsigns.blame_line({ full = true }) end, desc = "Blame Line" },
+      { "<leader>PB", function() package.loaded.gitsigns.blame() end,                     desc = "Blame Buffer" },
+      { "<leader>Pd", function() package.loaded.gitsigns.diffthis() end,                  desc = "Diff This" },
+      { "<leader>PD", function() package.loaded.gitsigns.diffthis("~") end,               desc = "Diff This ~" },
     },
   },
-  -- {
-  --   "kdheepak/lazygit.nvim",
-  --   cmd = {
-  --     "LazyGit",
-  --     "LazyGitConfig",
-  --     "LazyGitCurrentFile",
-  --     "LazyGitFilter",
-  --     "LazyGitFilterCurrentFile",
-  --   },
-  --   -- optional for floating window border decoration
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  --   -- setting the keybinding for LazyGit with 'keys' is recommended in
-  --   -- order to load the plugin when the command is run for the first time
-  --   keys = {
-  --     { "<leader>gl", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-  --   }
-  -- },
 }
