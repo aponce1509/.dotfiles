@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    enabled = false,
     keys = {
       { "<leader>d",  "",                                                                                   desc = "+debug",                 mode = { "n", "v" } },
       { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
@@ -25,6 +26,7 @@ return {
   -- python
   {
     "jay-babu/mason-nvim-dap.nvim",
+    enabled = false,
     optional = true,
     opts = {
       handlers = {
