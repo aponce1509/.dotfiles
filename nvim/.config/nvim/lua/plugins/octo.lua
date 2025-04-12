@@ -4,7 +4,7 @@ return {
     keys = {
       { "<leader>On",  "<cmd>Octo issue create<CR>",  desc = "Create a new Issue (Octo)" },
       { "<leader>Oo",  "<cmd>Octo issue browser<CR>", desc = "Open Issue in browser (Octo)" },
-      { "<leader>Or",  "<cmd>Octo issue browser<CR>", desc = "Reload Issue (Octo)" },
+      { "<leader>Or",  "<cmd>Octo issue reload<CR>",  desc = "Reload Issue (Octo)" },
       { "<leader>Opn", "<cmd>Octo pr create<CR>",     desc = "Create a new PR (Octo)" },
       { "<leader>Opc", "<cmd>Octo pr commits<CR>",    desc = "List all the PR commits (Octo)" },
       { "<leader>Opd", "<cmd>Octo pr diff<CR>",       desc = "PR Diff (Octo)" },
