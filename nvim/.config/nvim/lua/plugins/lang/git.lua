@@ -18,7 +18,7 @@ return {
       { "<leader>gS", "<cmd>Git<CR>",        desc = "Git Fugitive status" },
       { "<leader>ga", "<cmd>Git add %<CR>",  desc = "Git add current file" },
       { "<leader>gc", "<cmd>Git commit<CR>", desc = "Git commit staged files" },
-      { "<leader>gp", "<cmd>Git push<CR>",   desc = "Git commit staged files" },
+      { "<leader>gp", "<cmd>Git push<CR>",   desc = "Git push staged files" },
     },
   },
   {
