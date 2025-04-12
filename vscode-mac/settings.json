@@ -256,5 +256,6 @@
     "github.copilot.enable": {
         "quarto": false,
         "*": true
-    }
+    },
+    "git.openRepositoryInParentFolders": "always"
 }
