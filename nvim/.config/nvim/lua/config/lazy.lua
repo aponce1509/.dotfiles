@@ -17,7 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
--- TODO:s
+-- TODOs
 -- TODO: No quiero que me rellenes las funciones, ni parentesis ni nada pls
 -- TODO: cspell
 -- Markdown

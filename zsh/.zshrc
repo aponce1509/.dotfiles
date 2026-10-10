@@ -19,17 +19,22 @@ source ~/.zsh_profile
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # eval "$(starship init zsh)"
 
-# pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-
 # terraform
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# tmuxifier
+eval "$(tmuxifier init -)"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -50,16 +55,16 @@ fi
 # <<< conda initialize <<<
 
 source ~/.local/scripts/python_venv_activate
-CONDA_BIN_PATH="$(conda info --base)/envs/$(basename $CONDA_DEFAULT_ENV)/bin"
-PATH=$CONDA_BIN_PATH:$PATH
 
-# Zoxide
-eval "$(zoxide init zsh)"
-# PATH="$PATH:/opt/homebrew"
+# uv and uvx completions
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
-# Tmuxifier
-eval "$(tmuxifier init -)"
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
+# keybindings
+bindkey -s ^f "tmux-sessioner\n"
+bindkey -s ^g "tmuxifier-session aponce\n"
+bindkey -s ^n "tmuxifier-session\n"
+bindkey -s ^o "clear\n"

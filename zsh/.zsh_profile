@@ -1,8 +1,7 @@
-export XDG_CONFIG_HOME=$HOME/.config
-
-source $HOME/alias.sh
 source $HOME/env.sh
 source $HOME/paths.sh
+source $HOME/functions.sh
+source $HOME/alias.sh
 
 # source /usr/share/doc/fzf/examples/key-bindings.zsh
 # source /usr/share/doc/fzf/examples/completion.zsh

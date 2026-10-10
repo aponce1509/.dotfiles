@@ -5,12 +5,6 @@ alias tms="tmux switch-client -t"
 # alias cd="z"
 # alias bat="batcat"
 
-# bindkey -s ^f "zellij_sessionizer\n"
-bindkey -s ^f "tmux-sessioner\n"
-bindkey -s ^g "tmuxifier-session aponce\n"
-bindkey -s ^n "tmuxifier-session\n"
-bindkey -s ^o "clear\n"
-
 # Eza
 alias l="eza --icons --git -a"
 alias lll="eza -l --icons --git -a"
@@ -56,3 +50,9 @@ alias ......="cd ../../../../.."
 
 # Wezterm
 alias wzs="nohup wezterm start > /dev/null 2>&1 &"
+
+# Devin
+alias surf="devin-desktop"
+
+# Herdr
+alias hsl="herdr session list"
