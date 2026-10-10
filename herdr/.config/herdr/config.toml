@@ -1,0 +1,9 @@
+onboarding = false
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+[keys]
+# Contract (AGENTS.md): orchestrator leader = Ctrl+b
+prefix = "ctrl+b"

@@ -15,6 +15,8 @@
 - [x] skhd float layout → `alt - v` (was colliding with focus east on `alt - l`).
 - [x] Dropped vim-tmux-navigator (nvim plugin + tmux plugin line); `Ctrl+hjkl`
       now comes from `keymaps.lua` only.
+- [x] herdr stowed (`herdr/.config/herdr/config.toml`); prefix pinned `ctrl+b`;
+      server reloaded clean.
 
 ## Policy to define
 

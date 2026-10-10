@@ -139,7 +139,7 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 - `Ctrl+o` overlap (harness leader / zsh `clear`): accepted workaround; nvim
   terminal in/out uses `<Esc><Esc>`.
 - Parked (re-check on reintroduction): tmux, zellij `Ctrl+o` / `Ctrl+a` / `Ctrl+b`.
-- herdr config is not stowed yet (lives in `~/.config/herdr/`).
+- herdr: stowed (`herdr/.config/herdr/config.toml`); prefix pinned `ctrl+b`.
 
 ## 10. Sources of truth
 
@@ -149,7 +149,7 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 | L1 WM                | `skhd/.skhdrc`, `yabai/.yabairc`                        |
 | L2 terminal emulator | `wezterm/.wezterm.lua`, `wezterm/.config/wezterm/*.lua` |
 | L3 mux               | `wezterm/.wezterm.lua` (tmux parked)                    |
-| L4 orchestrator      | `~/.config/herdr/config.toml`                           |
+| L4 orchestrator      | `herdr/.config/herdr/config.toml`                       |
 | L5 harness           | `opencode/.config/opencode/cli.json`                    |
 | L6 editor            | `nvim/.config/nvim/lua/config/keymaps.lua`              |
 | shell / readline     | `zsh/.zshrc`                                            |
