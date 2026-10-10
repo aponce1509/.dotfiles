@@ -27,7 +27,7 @@
     "[python]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
     },
     "black-formatter.args": ["--line-length", "88"],
     "python.languageServer": "Pylance",
@@ -38,7 +38,7 @@
         "--ignore-missing-imports",
         "--show-column-numbers",
         "--no-pretty",
-        "--strict"
+        "--strict",
     ],
     "python.analysis.autoFormatStrings": true,
     "mypy.runUsingActiveInterpreter": true,
@@ -59,12 +59,12 @@
         "editor.quickSuggestions": {
             "other": true,
             "comments": true,
-            "strings": true
+            "strings": true,
         },
         // This is poorly documented, but seems to offer suggestions
         // from any word in open document when turned on, which
         // can be a little distracting in markdown docs:
-        "editor.wordBasedSuggestions": "off"
+        "editor.wordBasedSuggestions": "off",
         // "editor.tabSize": 2
         // Set this to false if you turn on quickSuggestions
         // but don't want suggestions for markdown related snippets
@@ -74,7 +74,7 @@
     // Terraform
     "[terraform]": {
         "editor.defaultFormatter": "hashicorp.terraform",
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
     },
     // Terminal
     // "terminal.integrated.defaultLocation": "editor",
@@ -99,7 +99,7 @@
     "prettier.tabWidth": 4,
     // NeoVim
     "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
+        "asvetliakov.vscode-neovim": 1,
     },
     // Spelling
     "cSpell.language": " \"en,es\"",
@@ -111,26 +111,26 @@
         "sessionx",
         "sklearn",
         "wandb",
-        "Yabai"
+        "Yabai",
     ],
     // GitHub
     "githubIssues.queries": [
         {
             "label": "Mis incidencias",
-            "query": "default"
+            "query": "default",
         },
         {
             "label": "Problemas creados",
-            "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
+            "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc",
         },
         {
             "label": "Problemas recientes",
-            "query": "state:open repo:${owner}/${repository} sort:updated-desc"
-        }
+            "query": "state:open repo:${owner}/${repository} sort:updated-desc",
+        },
     ],
     // Rust
     "[rust]": {
-        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
     },
     // AWS
     "aws.telemetry": false,
@@ -162,11 +162,11 @@
         "!Select",
         "!Select sequence",
         "!Split",
-        "!Split sequence"
+        "!Split sequence",
     ],
     // Lua
     "[lua]": {
-        "editor.defaultFormatter": "yinfei.luahelper"
+        "editor.defaultFormatter": "yinfei.luahelper",
     },
     // Vim
     "vim.leader": "<Space>",
@@ -175,9 +175,9 @@
     "vim.insertModeKeyBindings": [
         {
             "before": ["j", "j"],
-            "after": ["<esc>"]
+            "after": ["<esc>"],
         },
-        { "before": ["g", "g"], "commands": ["editor.action.triggerSuggest"] }
+        { "before": ["g", "g"], "commands": ["editor.action.triggerSuggest"] },
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         // NAVIGATION
@@ -193,23 +193,23 @@
 
         {
             "before": ["leader", "j"],
-            "commands": ["workbench.action.focusBelowGroup"]
+            "commands": ["workbench.action.focusBelowGroup"],
         },
         {
             "before": ["leader", "m"],
-            "commands": ["workbench.action.pinEditor"]
+            "commands": ["workbench.action.pinEditor"],
         },
         {
             "before": ["leader", "n"],
-            "commands": ["workbench.action.unpinEditor"]
+            "commands": ["workbench.action.unpinEditor"],
         },
         {
             "before": ["leader", "k"],
-            "commands": ["workbench.action.focusAboveGroup"]
+            "commands": ["workbench.action.focusAboveGroup"],
         },
         {
             "before": ["leader", "l"],
-            "commands": ["workbench.action.focusRightGroup"]
+            "commands": ["workbench.action.focusRightGroup"],
         },
         // NICE TO HAVE
         { "before": ["leader", "w"], "commands": [":w!"] },
@@ -217,29 +217,32 @@
         { "before": ["leader", "x"], "commands": [":x"] },
         {
             "before": ["[", "d"],
-            "commands": ["editor.action.marker.prev"]
+            "commands": ["editor.action.marker.prev"],
         },
         {
             "before": ["]", "d"],
-            "commands": ["editor.action.marker.next"]
+            "commands": ["editor.action.marker.next"],
         },
         {
             "before": ["<leader>", "."],
-            "commands": ["editor.action.quickFix"]
+            "commands": ["editor.action.quickFix"],
         },
         {
             "before": ["leader", "f"],
-            "commands": ["workbench.action.quickOpen"]
+            "commands": ["workbench.action.quickOpen"],
         },
         {
             "before": ["leader", "p"],
-            "commands": ["editor.action.formatDocument"]
+            "commands": ["editor.action.formatDocument"],
         },
         {
             "before": ["g", "h"],
-            "commands": ["editor.action.showDefinitionPreviewHover"]
+            "commands": ["editor.action.showDefinitionPreviewHover"],
         },
-        { "before": ["leader", "/"], "commands": ["editor.action.commentLine"] }
+        {
+            "before": ["leader", "/"],
+            "commands": ["editor.action.commentLine"],
+        },
     ],
     "vim.visualModeKeyBindings": [
         // Stay in visual mode while indenting
@@ -249,13 +252,19 @@
         { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
         { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
         // toggle comment selection
-        { "before": ["leader", "/"], "commands": ["editor.action.commentLine"] }
+        {
+            "before": ["leader", "/"],
+            "commands": ["editor.action.commentLine"],
+        },
     ],
     "git.suggestSmartCommit": false,
     "terminal.integrated.fontFamily": "Hack Nerd Font",
     "github.copilot.enable": {
         "quarto": false,
-        "*": true
+        "*": true,
     },
-    "git.openRepositoryInParentFolders": "always"
+    "git.openRepositoryInParentFolders": "always",
+    "aws.cloudformation.telemetry.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
 }
