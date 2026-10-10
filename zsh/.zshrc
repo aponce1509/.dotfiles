@@ -68,3 +68,6 @@ bindkey -s ^f "tmux-sessioner\n"
 bindkey -s ^g "tmuxifier-session aponce\n"
 bindkey -s ^n "tmuxifier-session\n"
 bindkey -s ^o "clear\n"
+
+# opencode
+export PATH=/Users/aponce1509/.opencode/bin:$PATH
