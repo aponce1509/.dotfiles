@@ -1,1 +1,29 @@
-{"words":["builtins","mypy","shellcheck","codespell","bufnr","augroup","nvim","autocmd","autocmds","aponce","openai","dotenv","llms","langchain","Serp"],"version":"0.2","language":"en,es-es","flagWords":[]}
+{
+    "words": [
+        "alacritty",
+        "aponce",
+        "augroup",
+        "autocmd",
+        "autocmds",
+        "bufnr",
+        "builtins",
+        "codespell",
+        "dotenv",
+        "herdr",
+        "langchain",
+        "llms",
+        "mypy",
+        "nvim",
+        "openai",
+        "opencode",
+        "Serp",
+        "shellcheck",
+        "skhd",
+        "wezterm",
+        "yabai",
+        "zellij"
+    ],
+    "version": "0.2",
+    "language": "en,es-es",
+    "flagWords": []
+}

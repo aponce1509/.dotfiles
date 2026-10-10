@@ -56,3 +56,8 @@ alias surf="devin-desktop"
 
 # Herdr
 alias hsl="herdr session list"
+
+# Agents harness
+
+alias o="opencode"
+alias om="opencode mini"

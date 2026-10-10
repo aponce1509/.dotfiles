@@ -70,9 +70,9 @@ config.keys = {
     mods = "LEADER",
     action = wezterm.action.EmitEvent("trigger-workspace"),
   },
-  { key = 'n', mods = 'CTRL',  action = act.SwitchWorkspaceRelative(1) },
-  { key = 'p', mods = 'CTRL',  action = act.SwitchWorkspaceRelative(-1) },
-  { key = 'l', mods = 'SUPER', action = wezterm.action.ShowLauncher },
+  { key = 'n', mods = 'LEADER', action = act.SwitchWorkspaceRelative(1) },
+  { key = 'p', mods = 'LEADER', action = act.SwitchWorkspaceRelative(-1) },
+  { key = 'l', mods = 'SUPER',  action = wezterm.action.ShowLauncher },
   {
     key = 'W',
     mods = 'LEADER',
