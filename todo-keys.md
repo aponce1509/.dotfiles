@@ -27,5 +27,8 @@
 ## Stack hygiene
 
 - [ ] tmux + zellij parked; re-map `Ctrl+o` / `Ctrl+a` / `Ctrl+b` on reintroduction
+- [ ] project manager (session manager): `^f` (`tmux-sessioner`) and `^g`
+      (`tmuxifier-session`) dropped while tmux is parked; choose a replacement and
+      a free chord (or a leader)
 - [ ] `AGENTS.md`: keep "current stack" section in sync
 - [ ] Rule: adding any tool to the stack requires a conflict review

@@ -64,9 +64,6 @@ eval "$(uvx --generate-shell-completion zsh)"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # keybindings
-bindkey -s ^f "tmux-sessioner\n"
-bindkey -s ^g "tmuxifier-session aponce\n"
-bindkey -s ^n "tmuxifier-session\n"
 bindkey -s ^o "clear\n"
 
 # opencode
