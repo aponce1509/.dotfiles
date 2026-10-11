@@ -2,8 +2,8 @@
 local root_path = os.getenv("SECOND_BRAIN_PATH") or error("SECOND_BRAIN_PATH is not set")
 return {
   {
-    -- https://github.com/epwalsh/obsidian.nvim
-    "epwalsh/obsidian.nvim",
+    -- https://github.com/obsidian-nvim/obsidian.nvim
+    "obsidian-nvim/obsidian.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
