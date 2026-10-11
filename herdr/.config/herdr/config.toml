@@ -5,5 +5,43 @@ name = "terminal"
 auto_switch = false
 
 [keys]
-# Contract (AGENTS.md): orchestrator leader = Ctrl+b
+# Contract (AGENTS.md): orchestrator leader = Ctrl+b. Hosts own leader+key only.
 prefix = "ctrl+b"
+
+# --- tabs: mirror nvim <Tab>/<S-Tab> = next/prev buffer ---
+next_tab = "prefix+tab"
+previous_tab = "prefix+shift+tab"
+new_tab = "prefix+c"
+switch_tab = "prefix+1..9"
+close_tab = "prefix+shift+x"
+rename_tab = "prefix+shift+t"
+
+# free prefix+tab from pane cycling (panes stay on prefix+h/j/k/l per contract)
+cycle_pane_next = ""
+cycle_pane_previous = ""
+
+# --- spaces (workspaces): mirror wezterm leader+n/p = next/prev workspace ---
+next_workspace = "prefix+n"
+previous_workspace = "prefix+p"
+new_workspace = "prefix+shift+n"
+close_workspace = "prefix+shift+d"
+rename_workspace = "prefix+shift+w"
+switch_workspace = "prefix+shift+1..9"
+workspace_picker = "prefix+w"
+
+# --- agents: finder (agents + spaces + tabs) + indexed jump ---
+goto = "prefix+g"
+focus_agent = "prefix+alt+1..9"
+
+# --- panes: unchanged defaults (focus_pane_* = prefix+h/j/k/l) ---
+last_pane = "prefix+backtick"
+
+[ui]
+status_indicators = "symbols"
+
+[ui.toast]
+delivery = "system"
+
+[experimental]
+# herdr-in-herdr only: block nested orchestrator launches.
+allow_nested = false
