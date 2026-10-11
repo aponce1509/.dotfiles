@@ -1,5 +1,6 @@
 local M = {}
 local wezterm = require 'wezterm'
+local sessions = require 'sessions'
 
 M.os_name = package.config:sub(1, 1) == "/" and "macOS" or "Windows"
 
@@ -108,10 +109,9 @@ M.hacky_user_commands = {
       -- Switch to the existing workspace
       wezterm.mux.set_active_workspace(workspace_name)
     else
-      local new_tab, _, new_window = wezterm.mux.spawn_window({
-        cwd = cmd_context.cwd,
-        workspace = workspace_name,
-      })
+      -- Build the workspace from its resolved profile (docs/session-model.md §6).
+      local layout = sessions.resolve(workspace_name, cmd_context.cwd)
+      sessions.open(workspace_name, cmd_context.cwd, layout)
       wezterm.mux.set_active_workspace(workspace_name)
     end
   end,
