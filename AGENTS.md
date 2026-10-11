@@ -27,7 +27,7 @@ macOS
 └─ wezterm                              Cmd-*, Ctrl+Shift-*     terminal emulator
    ├─ wezterm mux (built-in)            leader Ctrl+a           mux
    └─ herdr (orchestrator)              leader Ctrl+b           in-terminal
-      ├─ opencode / codex (harness)     leader Ctrl+o           in-terminal
+      ├─ opencode / codex (harness)     leader Ctrl+\           in-terminal
       └─ nvim (editor)                  leader Space, local \   in-terminal
          └─ TUIs (lazygit, btop, …)     free                    in-terminal
 ```
@@ -61,7 +61,7 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
    └─ focused program         owns raw Ctrl+<letter>
       ├─ shell / readline     Ctrl+p/n, Ctrl+r, Ctrl+l, Ctrl+u/w, Ctrl+c/d/z
       ├─ nvim                 Ctrl+hjkl window nav (normal mode only)
-      ├─ harness              Ctrl+o leader only
+      ├─ harness              Ctrl+\ leader only
       └─ TUI                  own keys
 ```
 
@@ -83,7 +83,7 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 | `Ctrl-*`                                | innermost focused in-terminal program | crowded; **no new global Ctrl bindings**                      |
 | `Ctrl+Opt-*`, `Ctrl+Cmd-*`, `Cmd+Opt-*` | FREE                                  | preferred space for new chords                                |
 
-- Never steal `Ctrl+a`, `Ctrl+b` (leaders) or `Ctrl+o` (harness).
+- Never steal `Ctrl+a`, `Ctrl+b` (leaders) or `Ctrl+\` (harness).
 - TUIs are free otherwise, subject to the two bullets above.
 
 ## 5. Leader keys (sequence: press leader, then key)
@@ -92,7 +92,7 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 | ------------ | ---------------- | ------------------- | ----------------------------------------------------- |
 | mux          | wezterm (mux)    | `Ctrl+a`            | `wezterm/.wezterm.lua`                                 |
 | orchestrator | herdr            | `Ctrl+b`            | `~/.config/herdr/config.toml`                         |
-| harness      | opencode / codex | `Ctrl+o`            | `opencode/.config/opencode/cli.json`                  |
+| harness      | opencode / codex | `Ctrl+\`            | `opencode/.config/opencode/cli.json`                  |
 | editor       | nvim             | `Space` (local `\`) | `nvim/.config/nvim/lua/config/keymaps.lua`            |
 
 ## 6. Hard-reserved chords (do not reuse)
@@ -100,13 +100,13 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 - `Cmd` only → system (e.g. `Cmd+Space`, `Cmd+Tab`, `Cmd+Q/W/M`).
 - `Opt` + `hjkl` / `Opt+Shift` / `Opt+b` / `Opt+e s v` / `Opt+w f` → yabai,
   always active.
-- `Ctrl+a` → mux leader. `Ctrl+b` → orchestrator leader. `Ctrl+o` → harness
+- `Ctrl+a` → mux leader. `Ctrl+b` → orchestrator leader. `Ctrl+\` → harness
   leader.
 - `Ctrl+Shift+n/v/c/+/-/0` → wezterm (fullscreen, paste, copy, font).
 - shell/readline (program-local): `Ctrl+p/n` history, `Ctrl+r` search, `Ctrl+l`
   clear, `Ctrl+u/w`, `Ctrl+c/d/z`. (`Ctrl+a/e` not needed → Home/End.)
 - nvim: `Space`/`\` leaders, `Ctrl+hjkl` window nav (**normal mode only**),
-  `Ctrl+\ Ctrl+n` leave terminal mode.
+  `Ctrl+;` floating terminal toggle.
 
 ## 7. Conflict vs collision (the rule)
 
@@ -114,8 +114,8 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
   editor). Allowed; document it.
 - **Collision** = same chord, layers can be active at once. Forbidden; fix by
   leader or free block.
-- Never co-focused → never a collision: shell vs TUI/harness (zsh `Ctrl+o` vs
-  harness `Ctrl+o`).
+- Never co-focused → never a collision: shell vs TUI/harness share chords
+  freely (e.g. zsh `Ctrl+o` vs a TUI's `Ctrl+o`).
 - When layers nest (herdr→harness→nvim), only the innermost-focused layer gets
   the raw chord.
 
@@ -123,7 +123,7 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 
 1. Pick the layer (L0–L7) or the in-terminal program.
 2. Pick the block: L0→`Cmd`, L1→`Opt`, else prefer leader or FREE blocks.
-3. Check §5–§6: no `Ctrl+a` / `Ctrl+b` / `Ctrl+o` theft, no always-active or
+3. Check §5–§6: no `Ctrl+a` / `Ctrl+b` / `Ctrl+\` theft, no always-active or
    shell chord reuse.
 4. If the chord must span programs, register it with the one dispatcher, not in
    each program.
@@ -135,9 +135,9 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 
 ## 9. Known conflicts / collisions (to resolve)
 
-- nvim `Ctrl+hjkl` / `Ctrl+\` / `Ctrl+l`: accepted as-is.
-- `Ctrl+o` overlap (harness leader / zsh `clear`): accepted workaround; nvim
-  terminal in/out uses `<Esc><Esc>`.
+- nvim `Ctrl+hjkl` / `Ctrl+;` / `Ctrl+l`: accepted as-is.
+- `Ctrl+\` harness leader: nvim float moved to `Ctrl+;`, so `Ctrl+o` returns to
+  the shell (`clear`); nvim terminal in/out uses `<Esc><Esc>`.
 - Parked (re-check on reintroduction): tmux, zellij `Ctrl+o` / `Ctrl+a` / `Ctrl+b`.
 - herdr: stowed (`herdr/.config/herdr/config.toml`); prefix pinned `ctrl+b`.
 

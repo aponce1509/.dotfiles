@@ -7,7 +7,7 @@
     "timeout": 1500
   },
   "keybinds": {
-    "leader": "ctrl+o",
+    "leader": "ctrl+\\",
 
     "command.palette.show": "<leader>p",
     "help.show": "<leader>h",

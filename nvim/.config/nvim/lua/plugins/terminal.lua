@@ -11,7 +11,7 @@ return {
     keys = {
       -- { "<esc><esc>",      "<c-\\><c-n>",                                    desc = "Enter Normal Mode",             mode = "t" },
       { "<leader>fs",      ":TermSelect<CR>",                            desc = "Select a hidden Terminal",     mode = "n" },
-      { "<C-\\>",          ":ToggleTerm direction=float name=base<CR>",  desc = "Open base floating terminal",  mode = "n" },
+      { "<C-;>",           ":ToggleTerm direction=float name=base<CR>",  desc = "Open base floating terminal",  mode = "n" },
       { "<leader>fo",      ":TermNew direction=float name=float<CR>",    desc = "Open new floating terminal",   mode = "n" },
       { "<localleader>ts", ":TermNew direction=horizontal name=hor<CR>", desc = "Open new horizontal terminal", mode = "n" },
       { "<localleader>tv", ":TermNew direction=vertical name=ver<CR>",   desc = "Open new vertical terminal",   mode = "n" },
@@ -19,7 +19,7 @@ return {
       { "<C-j>",           "<cmd>wincmd j<cr>",                          desc = "Go to Lower Window",           mode = "t" },
       { "<C-k>",           "<cmd>wincmd k<cr>",                          desc = "Go to Upper Window",           mode = "t" },
       { "<C-l>",           "<cmd>wincmd l<cr>",                          desc = "Go to Right Window",           mode = "t" },
-      { "<C-\\>",          "<cmd>close<cr>",                             desc = "Hide Terminal",                mode = "t" },
+      { "<C-;>",           "<cmd>close<cr>",                             desc = "Hide Terminal",                mode = "t" },
 
     },
     config = function()

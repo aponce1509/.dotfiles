@@ -7,11 +7,11 @@
 
 - [x] `Ctrl+p` / `Ctrl+n` → shell-reserved (readline history); program-local.
 - [x] Pane nav: keep `Ctrl+hjkl` (do not move it to another key).
-- [x] `Ctrl+\` and `Ctrl+l` accepted as-is (no change).
+- [x] `Ctrl+\` → harness leader; nvim float toggle moved to `Ctrl+;`.
 - [x] Shell vs TUI/harness are never co-focused → shared chords are conflicts,
-      not collisions (e.g. zsh `Ctrl+o` vs harness `Ctrl+o`).
-- [x] `Ctrl+o` overlap accepted as a workaround (harness leader / zsh `clear`);
-      no nvim remap. nvim terminal in/out uses `<Esc><Esc>`.
+      not collisions (they share chords freely).
+- [x] `Ctrl+o` overlap resolved: harness leader moved to `Ctrl+\`, so `Ctrl+o`
+      returns to the shell (`clear`). nvim terminal in/out uses `<Esc><Esc>`.
 - [x] skhd float layout → `alt - v` (was colliding with focus east on `alt - l`).
 - [x] Dropped vim-tmux-navigator (nvim plugin + tmux plugin line); `Ctrl+hjkl`
       now comes from `keymaps.lua` only.
