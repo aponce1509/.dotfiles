@@ -1,5 +1,9 @@
-# TODO: Relative paths do not work
+# Session picker for WezTerm (Windows).
 #
+# Naming model: docs/session-model.md §5. Mirrors
+# bin/.local/scripts/wez-sessioner: `directory_finder --ids` yields
+# "(<type>)<TAB><id><TAB><path>" and the id becomes the workspace name.
+
 # Check if WezTerm is installed
 if (-not (Get-Command 'wezterm' -ErrorAction SilentlyContinue)) {
     Write-Host "WezTerm is not installed. Please install it first."
@@ -18,41 +22,55 @@ if (-not (Get-Command 'fzf' -ErrorAction SilentlyContinue)) {
     exit 1
 }
 
-# Determine the selected workspace
-if ($args.Count -eq 1 -and $args[0] -ne '--kill') {
-    $selected = $args[0]
+# Check if directory_finder is installed
+if (-not (Get-Command 'directory_finder' -ErrorAction SilentlyContinue)) {
+    Write-Host "directory_finder is not installed. Please install it first."
+    exit 1
+}
+
+# Mirror directory_finder's slug rules for a single path segment: lowercase,
+# anything outside [a-z0-9@/-] becomes '-', collapse runs, trim dashes.
+function Get-Slug([string]$value) {
+    $slug = $value.ToLower() -replace '[^a-z0-9@/\-]', '-'
+    $slug = $slug -replace '-+', '-'
+    return $slug.Trim('-')
+}
+
+# Determine the selected workspace id and working directory
+if ($args.Count -ge 1 -and $args[0] -ne '--kill') {
+    $selectedCwd = $args[0]
+    $selectedId = Get-Slug (Split-Path -Leaf $args[0])
 } else {
-    $selected = directory_finder ~/repos ~/OneDrive/Documents --depth 1 |
-    fzf | 
-    ForEach-Object { $_ -replace '^[^)]*\)\s*', '' }
+    $line = directory_finder ~/repos ~/ai-repos ~/OneDrive/Documents --depth 1 --ids |
+        fzf --delimiter "`t" --with-nth 2,3 --nth 2,3
+    if (-not $line) {
+        exit 0
+    }
+    $parts = $line -split "`t"
+    $selectedId = $parts[1]
+    $selectedCwd = $parts[2]
 }
 
 # Exit if no selection is made
-if (-not $selected) {
+if (-not $selectedId -or -not $selectedCwd) {
     exit 0
 }
-
-# Extract the workspace_cwd (removing non-alphanumeric characters at the start)
-#$workspace_cwd = $selected -replace '^[^a-zA-Z/]*', ''
-$workspace_cwd = $selected -replace '^[^\w/\.]*', ''
 
 function Switch-Workspace {
     param (
         [Parameter(Position = 0, Mandatory = $true)]
         [string]$WorkspaceName,
 
-        [Parameter(Position = 1, Mandatory = $false)]
+        [Parameter(Position = 1, Mandatory = $true)]
         [string]$WorkspaceCwd
     )
 
-    # Create the JSON payload
-    $jsonPayload = @"
-{
-    "cmd": "switch-workspace",
-    "cwd": "$WorkspaceCwd",
-    "name": "$WorkspaceName"
-}
-"@
+    # Build the payload with ConvertTo-Json so paths are escaped correctly.
+    $jsonPayload = @{
+        cmd  = 'switch-workspace'
+        cwd  = $WorkspaceCwd
+        name = $WorkspaceName
+    } | ConvertTo-Json -Compress
 
     # Encode the JSON payload in Base64
     $base64Payload = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($jsonPayload))
@@ -62,16 +80,12 @@ function Switch-Workspace {
     Write-Host -NoNewline $ansiSequence
 }
 
-# Convert selected directory name into a valid workspace name
-$selected_name = (Split-Path -Leaf $selected) -replace '\.', '_'
-
 # Switch to the selected workspace
-Switch-Workspace -WorkspaceName $selected_name -WorkspaceCwd $workspace_cwd
+Switch-Workspace -WorkspaceName $selectedId -WorkspaceCwd $selectedCwd
 
 # Optionally kill the current pane
 #if ($args -contains '--kill') {
-#wezterm cli kill-pane
+#    wezterm cli kill-pane
 #}
 
 exit 0
-

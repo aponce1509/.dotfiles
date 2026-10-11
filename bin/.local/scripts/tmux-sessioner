@@ -1,32 +1,49 @@
 #!/usr/bin/env bash
+# Session picker dispatcher.
+#
+# Under WezTerm it defers to `wez-sessioner` (workspaces). Otherwise it drives
+# tmux directly, naming sessions with the same ids `directory_finder --ids`
+# produces (docs/session-model.md §5). Ids avoid `.` and `:`, which tmux would
+# rewrite to `_`.
 
 if [ -n "$WEZTERM_CONFIG_DIR" ]; then
-  # If we are in wezterm execute wez-sessioner passing the args passed to this command
+  # In wezterm: hand off to the workspace picker, forwarding any arguments.
   wez-sessioner "$@"
   exit 0
 fi
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
+command -v directory_finder >/dev/null || {
+  echo "directory_finder is not installed. Please install it first." >&2
+  exit 1
+}
+
+roots=(~/repos ~/ai-repos ~/repos/programming-reference/python/apm_python_ref ~/OneDrive/Documents)
+
+if [ "$#" -ge 1 ]; then
+  selected_cwd=$1
+  selected_name=$(basename -- "$1" |
+    tr '[:upper:]' '[:lower:]' |
+    sed 's/[^a-z0-9@\/-]/-/g; s/--*/-/g; s/^-//; s/-$//')
 else
-    selected=$(directory_finder ~/repos ~/OneDrive/Documents --depth 1 | fzf | sed 's/^[^)]*) *//') 
+  selected=$(
+    directory_finder "${roots[@]}" --depth 1 --ids |
+      fzf --delimiter=$'\t' --with-nth=2,3 --nth=2,3 || true
+  )
+  [ -z "$selected" ] && exit 0
+  IFS=$'\t' read -r _tag selected_name selected_cwd <<< "$selected"
 fi
 
-if [[ -z $selected ]]; then
-    exit 0
+[ -z "$selected_cwd" ] && exit 0
+
+tmux_running=$(pgrep tmux || true)
+
+if [ -z "$TMUX" ] && [ -z "$tmux_running" ]; then
+  tmux new-session -s "$selected_name" -c "$selected_cwd"
+  exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
-
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
+if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+  tmux new-session -ds "$selected_name" -c "$selected_cwd"
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
-fi
-
-
-tmux switch-client -t $selected_name
+tmux switch-client -t "$selected_name"
