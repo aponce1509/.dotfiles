@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+# Build and install every Rust utility in this workspace.
+#
+# macOS / Linux counterpart of `install.ps1`.
+#
+# Binaries land in "${RUST_INSTALL_ROOT:-$HOME/.local}/bin", which
+# `zsh/paths.sh` already puts on PATH (`~/.local/bin`).
+set -eu
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+dest_root="${RUST_INSTALL_ROOT:-$HOME/.local}"
+dest_bin="${dest_root}/bin"
+
+if ! command -v cargo >/dev/null 2>&1; then
+    echo "cargo not found. Install Rust first: https://rustup.rs" >&2
+    exit 1
+fi
+
+mkdir -p "$dest_bin"
+
+installed=0
+for manifest in "$script_dir"/*/Cargo.toml; do
+    [ -f "$manifest" ] || continue
+    crate_dir=$(dirname -- "$manifest")
+    name=$(basename -- "$crate_dir")
+
+    # Only install crates that actually produce a binary target.
+    if [ ! -f "$crate_dir/src/main.rs" ] && ! grep -q '^\[\[bin\]\]' "$manifest"; then
+        echo "skip  $name (no binary target)"
+        continue
+    fi
+
+    echo "build $name"
+    cargo install --path "$crate_dir" --root "$dest_root" --locked --force
+    installed=$((installed + 1))
+done
+
+if [ "$installed" -eq 0 ]; then
+    echo "No binary crates found under $script_dir" >&2
+    exit 1
+fi
+
+echo "Installed $installed crate(s) into $dest_bin"

@@ -1,0 +1,16 @@
+# Workspace root for the small Rust utilities that ship with this dotfiles repo.
+#
+# Adding a new utility is mechanical:
+#   1. `cargo new --bin <name>` inside this directory.
+#   2. Add the folder name to `members` below.
+#   3. Run `./rust/install` (or `.\rust\install.ps1` on Windows).
+#
+# Shared dependency versions live in `[workspace.dependencies]` so every crate
+# resolves the same versions. A crate opts in with `<dep>.workspace = true`.
+[workspace]
+resolver = "2"
+members = ["directory_finder"]
+
+[workspace.dependencies]
+clap = { version = "4.5.16", features = ["derive"] }
+walkdir = "2.5.0"
