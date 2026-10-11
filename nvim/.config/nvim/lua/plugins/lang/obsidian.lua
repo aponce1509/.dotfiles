@@ -75,64 +75,64 @@ return {
         desc = "Open todo.md in a vertically split window"
       },
 
-      { "<leader>jr", "<cmd> ObsidianRename <CR>", desc = "Obsidian New File" },
-      { "<leader>jn", "<cmd> ObsidianNew <CR>",    desc = "Obsidian New File" },
-      { "<leader>jo", "<cmd> ObsidianSearch <CR>", desc = "Obsidian Search files" },
+      { "<leader>jr", "<cmd>Obsidian rename<CR>", desc = "Obsidian Rename Note" },
+      { "<leader>jn", "<cmd>Obsidian new<CR>", desc = "Obsidian New File" },
+      { "<leader>jo", "<cmd>Obsidian search<CR>", desc = "Obsidian Search files" },
       {
         "<leader>je",
-        "<cmd> ObsidianOpen <CR>",
+        "<cmd>Obsidian open<CR>",
         desc = "Obsidian Open External (obsidian App)"
       },
       {
         "<leader>jb",
-        "<cmd> ObsidianBacklinks <CR>",
+        "<cmd>Obsidian backlinks<CR>",
         desc = "Obsidian list backlinks"
       },
-      { "<leader>jt", "<cmd> ObsidianTags <CR>", desc = "Obsidian list all tags" },
+      { "<leader>jt", "<cmd>Obsidian tags<CR>", desc = "Obsidian list all tags" },
       {
         "<leader>jjn",
-        "<cmd> ObsidianToday <CR>",
+        "<cmd>Obsidian today<CR>",
         desc = "Obsidian open today note"
       },
       {
         "<leader>jjy",
-        "<cmd> ObsidianYesterday <CR>",
+        "<cmd>Obsidian yesterday<CR>",
         desc = "Obsidian open yesterday note"
       },
       {
         "<leader>jjt",
-        "<cmd> ObsidianTomorrow <CR>",
+        "<cmd>Obsidian tomorrow<CR>",
         desc = "Obsidian open tomorow note"
       },
       {
         "<leader>jjj",
-        "<cmd> ObsidianDailies <CR>",
+        "<cmd>Obsidian dailies<CR>",
         desc = "Obsidian open journal picker"
       },
       {
         "<leader>jm",
-        "<cmd> ObsidianTemplate <CR>",
+        "<cmd>Obsidian template<CR>",
         desc = "Obsidian Insert Template"
       },
       {
         "<leader>ji",
-        "<cmd> ObsidianPasteImg <CR>",
+        "<cmd>Obsidian paste_img<CR>",
         desc = "Obsidian Paste Image from clipboard"
       },
       {
         "<leader>jl",
-        "<cmd> ObsidianLink <CR>",
+        "<cmd>Obsidian link<CR>",
         desc = "Obsidian select Link and insert in cursor"
       },
       {
         "<leader>jr",
-        "<cmd> ObsidianExtractNote <CR>",
+        "<cmd>Obsidian extract_note<CR>",
         desc = "Obsidian extract selected to new note",
         mode = { "v" },
       },
       {
         "<leader>jl",
-        "<cmd> ObsidianLinkNew <CR>",
+        "<cmd>Obsidian link_new<CR>",
         desc = "Obsidian Create new link from selected text",
         mode = { "v" },
       },
@@ -155,13 +155,7 @@ return {
         ui = {
           enable = false,
         },
-        follow_url_func = function(url)
-          -- Open the URL in the default web browser.
-          vim.fn.jobstart({ "open", url }) -- Mac OS
-          -- vim.fn.jobstart({"xdg-open", url})  -- linux
-          -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
-          -- vim.ui.open(url) -- need Neovim 0.10.0+
-        end,
+        legacy_commands = false,
         workspaces = {
           {
             name = "personal",
@@ -169,7 +163,6 @@ return {
           },
         },
         completion = {
-          nvim_cmp = false,
           min_chars = 2,
         },
         notes_subdir = "09 - Inbox",
@@ -184,41 +177,27 @@ return {
           -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
           template = second_brain_path .. nvim_templates .. "/daily.md",
         },
-        wiki_link_func = function(opts)
-          if opts.id == nil then
-            return string.format("[[%s]]", opts.label)
-          elseif opts.label ~= opts.id then
-            return string.format("[[%s|%s]]", opts.id, opts.label)
-          else
-            return string.format("[[%s]]", opts.id)
-          end
-        end,
         -- Specify how to handle attachments.
         attachments = {
-          -- The default folder to place images in via `:ObsidianPasteImg`.
+          -- The default folder to place images in via `:Obsidian paste_img`.
           -- If this is a relative path it will be interpreted as relative to the vault root.
           -- You can always override this per image by passing a full path to the command instead of just a filename.
-          img_folder = "99 - Meta/Attachments", -- This is the default
-          -- A function that determines the text to insert in the note when pasting an image.
-          -- It takes two arguments, the `obsidian.Client` and an `obsidian.Path` to the image file.
-          -- This is the default implementation.
-          img_text_func = function(client, path)
-            path = client:vault_relative_path(path) or path
-            return string.format("![[%s]]", path.name)
+          folder = "99 - Meta/Attachments", -- This is the default
+        },
+        frontmatter = {
+          func = function(note)
+            -- This is equivalent to the default frontmatter function.
+            local out = { tags = note.tags }
+            -- `note.metadata` contains any manually added fields in the frontmatter.
+            -- So here we just make sure those fields are kept in the frontmatter.
+            if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+              for k, v in pairs(note.metadata) do
+                out[k] = v
+              end
+            end
+            return out
           end,
         },
-        note_frontmatter_func = function(note)
-          -- This is equivalent to the default frontmatter function.
-          local out = { tags = note.tags }
-          -- `note.metadata` contains any manually added fields in the frontmatter.
-          -- So here we just make sure those fields are kept in the frontmatter.
-          if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-            for k, v in pairs(note.metadata) do
-              out[k] = v
-            end
-          end
-          return out
-        end,
 
         note_id_func = function(title)
           -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
@@ -255,25 +234,7 @@ return {
       }
     end,
     cmd = {
-      "ObsidianOpen",
-      "ObsidianNew",
-      "ObsidianQuickSwitch",
-      "ObsidianFollowLink",
-      "ObsidianBacklinks",
-      "ObsidianTags",
-      "ObsidianToday",
-      "ObsidianYesterday",
-      "ObsidianTomorrow",
-      "ObsidianDailies",
-      "ObsidianTemplate",
-      "ObsidianSearch",
-      "ObsidianLink",
-      "ObsidianLinkNew",
-      "ObsidianLinks",
-      "ObsidianExtractNote",
-      "ObsidianWorkspace",
-      "ObsidianPasteImg",
-      "ObsidianRename",
+      "Obsidian",
     },
   },
 }
