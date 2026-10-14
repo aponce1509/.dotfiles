@@ -1,14 +1,18 @@
 onboarding = false
 
+# --- theme -----------------------------------------------------------------
+# Keep the host palette: Herdr's UI inherits wezterm's ANSI colors
+# (Catppuccin Macchiato (Gogh)). No built-in theme override here.
 [theme]
 name = "terminal"
 auto_switch = false
 
-[keys]
+# --- keys ------------------------------------------------------------------
 # Contract (AGENTS.md): orchestrator leader = Ctrl+b. Hosts own leader+key only.
+[keys]
 prefix = "ctrl+b"
 
-# --- tabs: mirror nvim <Tab>/<S-Tab> = next/prev buffer ---
+# tabs: mirror nvim <Tab>/<S-Tab> = next/prev buffer
 next_tab = "prefix+tab"
 previous_tab = "prefix+shift+tab"
 new_tab = "prefix+c"
@@ -20,7 +24,7 @@ rename_tab = "prefix+shift+t"
 cycle_pane_next = ""
 cycle_pane_previous = ""
 
-# --- spaces (workspaces): mirror wezterm leader+n/p = next/prev workspace ---
+# spaces (workspaces): mirror wezterm leader+n/p = next/prev workspace
 next_workspace = "prefix+n"
 previous_workspace = "prefix+p"
 new_workspace = "prefix+shift+n"
@@ -29,19 +33,68 @@ rename_workspace = "prefix+shift+w"
 switch_workspace = "prefix+shift+1..9"
 workspace_picker = "prefix+w"
 
-# --- agents: finder (agents + spaces + tabs) + indexed jump ---
+# agents: finder (agents + spaces + tabs) + indexed jump
 goto = "prefix+g"
 focus_agent = "prefix+alt+1..9"
 
-# --- panes: unchanged defaults (focus_pane_* = prefix+h/j/k/l) ---
+# panes: unchanged defaults (focus_pane_* = prefix+h/j/k/l)
 last_pane = "prefix+backtick"
 
+# --- ui --------------------------------------------------------------------
 [ui]
+# Accent aligned to Catppuccin Macchiato blue (default "cyan" is the teal slot).
+accent = "#8aadf4"
+
+# Distinct glyphs per agent state instead of color-only dots.
 status_indicators = "symbols"
 
+# Roomier expanded sidebar for the richer rows below (default 26/18/36).
+sidebar_width = 30
+sidebar_min_width = 20
+sidebar_max_width = 40
+
+# Hide the tab row when a workspace has a single tab.
+hide_tab_bar_when_single_tab = true
+
+# Label split-pane borders with the detected agent when no manual pane name is set.
+show_agent_labels_on_pane_borders = true
+
+# New tabs are named automatically; set true to be prompted each time.
+prompt_new_tab_name = false
+
+# Right-aligned status strip in the tab row (zoom pill, host, clock).
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "hostname" },
+  { type = "datetime", format = "%a %H:%M" },
+]
+tab_bar_right_separator = " · "
+
+# Outer terminal title; what the WM / wezterm tab bar shows. Rendered server-side.
+window_title = "{hostname} · {workspace}"
+
+# Expanded Agent rows: state + name, then what the agent is doing, then location.
+[ui.sidebar.agents]
+row_gap = 1
+rows = [
+  ["state_icon", { token = "agent", fg = "#8aadf4", bold = true }, { token = "state_text", fg = "#6e738d" }],
+  [{ token = "terminal_title_stripped", fg = "#a5adcb", dim = true }],
+  [{ token = "machine", fg = "#6e738d", dim = true }, { token = "workspace", fg = "#c6a0f6" }, { token = "tab", fg = "#6e738d" }],
+]
+
+# Expanded Space rows: name + rolled-up state, then branch + ahead/behind.
+[ui.sidebar.spaces]
+row_gap = 1
+rows = [
+  ["state_icon", { token = "workspace", bold = true }],
+  [{ token = "branch", fg = "#c6a0f6" }, "git_status"],
+]
+
+# --- notifications ---------------------------------------------------------
 [ui.toast]
 delivery = "system"
 
+# --- advanced --------------------------------------------------------------
 [experimental]
 # herdr-in-herdr only: block nested orchestrator launches.
 allow_nested = false
