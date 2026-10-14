@@ -7,11 +7,14 @@ onboarding = false
 name = "terminal"
 auto_switch = false
 
+# --- terminal --------------------------------------------------------------
+[terminal]
+new_cwd = "follow"
+
 # --- keys ------------------------------------------------------------------
 # Contract (AGENTS.md): orchestrator leader = Ctrl+b. Hosts own leader+key only.
 [keys]
 prefix = "ctrl+b"
-
 # tabs: mirror nvim <Tab>/<S-Tab> = next/prev buffer
 next_tab = "prefix+tab"
 previous_tab = "prefix+shift+tab"
