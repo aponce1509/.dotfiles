@@ -153,6 +153,7 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 | L5 harness           | `opencode/.config/opencode/cli.json`                    |
 | L6 editor            | `nvim/.config/nvim/lua/config/keymaps.lua`              |
 | shell / readline     | `zsh/.zshrc`                                            |
+| app: Obsidian        | vault `99 - Meta/mise-en-place.jsonc` (+ `.obsidian.vimrc`) |
 
 ## 11. Answering a keybinding question
 
@@ -161,3 +162,15 @@ host: wezterm / mux / herdr   owns leader only, passes Ctrl+<letter> down
 3. If the chord is `Ctrl+<letter>`, report the focused in-terminal program
    instead (§3).
 4. If >1 layer claims it: label conflict or collision (§7).
+
+## 12. Apps outside the terminal chain
+
+- GUI apps (Obsidian, browser, IDE) sit beside L2, not under it: they get a key
+  only when L0/L1 did not take it, and they are never co-focused with the
+  terminal layers → same chord as a terminal leader = conflict, not collision.
+- Obsidian: plugin `mise-en-place` (in the vault). Leader `Space` (vim normal
+  mode and outside text fields) and `Ctrl+Space` (always; free at L0, where
+  input-source switching is `Ctrl+Opt+Space`). Localleader `\`. Chains with a
+  which-key popup; `<leader> l` = per-project layouts.
+- Rule: new Obsidian keys go in the vault config as leader chains, not as
+  `Cmd`/`Opt` hotkeys.
