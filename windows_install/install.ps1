@@ -1,6 +1,6 @@
 # Ensure that STOW_FOLDERS is defined
 if (-not $STOW_FOLDERS) {
-    $STOW_FOLDERS = "bin,yabai,tmux,alacritty,spacebar,skhd,zsh,powerlevel10k,zellij,nvim,starship,kitty"
+    $STOW_FOLDERS = "bin,yabai,tmux,alacritty,spacebar,skhd,zsh,zellij,nvim,starship,kitty"
 }
 
 # Ensure that DOTFILES is defined

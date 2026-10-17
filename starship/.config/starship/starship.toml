@@ -1,44 +1,101 @@
-add_newline = false
-# A minimal left prompt
-format = """$directory$character"""
-palette = "catppuccin_mocha"
-# move the rest of the prompt to the right
-right_format = """$all"""
-command_timeout = 1000
+"$schema" = "https://starship.rs/config-schema.json"
 
-[directory.substitutions]
-'~/tests/starship-custom' = 'work-project'
+add_newline = true
+command_timeout = 1000
+palette = "catppuccin_mocha"
+
+# Icons are \u escapes so the file stays readable without a Nerd Font editor.
+# ~/dotfiles  main !2  󰏗 v0.4  py 3.14  rs 1.99  3s
+# ❯
+format = """
+$directory$git_branch$git_state$git_status$package\
+$python$rust$nodejs$golang$lua$cmd_duration$status
+$character"""
+
+[character]
+success_symbol = "[❯](bold mauve)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[directory]
+style = "bold blue"
+truncation_length = 2
+truncate_to_repo = true
+read_only = " \U000f033e"
+read_only_style = "red"
+format = "[$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
-format = '[$symbol$branch(:$remote_branch)]($style)'
+symbol = "\ue0a0 "
+style = "mauve"
+format = "[on](overlay1) [$symbol$branch(:$remote_branch)]($style) "
+
+[git_state]
+style = "bold peach"
+format = "[\\($state( $progress_current/$progress_total)\\)]($style) "
+
+[git_status]
+style = "yellow"
+format = "([$all_status$ahead_behind]($style) )"
+conflicted = "=$count "
+ahead = "\u21e1$count "
+behind = "\u21e3$count "
+diverged = "\u21d5\u21e1$ahead_count\u21e3$behind_count "
+untracked = "?$count "
+stashed = "\u2261$count "
+modified = "!$count "
+staged = "+$count "
+renamed = "\u00bb$count "
+deleted = "\u2718$count "
+
+[package]
+symbol = "\U000f03d7 "
+style = "peach"
+format = "[is](overlay1) [$symbol$version]($style) "
 
 [python]
-symbol = " "
-#pyenv_version_name = true
-format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
-style = "bold yellow"
-pyenv_prefix = "venv "
-python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+symbol = "\ue73c "
+style = "yellow"
+pyenv_version_name = false
+python_binary = ["./venv/bin/python", "./.venv/bin/python", "python3", "python"]
 detect_extensions = ["py"]
-version_format = "v${raw}"
+format = "[via](overlay1) [$symbol$version]($style)([ \\($virtualenv\\)](green)) "
+version_format = "${major}.${minor}"
 
-[aws]
-format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
+[rust]
+symbol = "\ue7a8 "
+style = "peach"
+format = "[via](overlay1) [$symbol$version]($style) "
+version_format = "${major}.${minor}"
+
+[nodejs]
+symbol = "\ue718 "
+style = "green"
+format = "[via](overlay1) [$symbol$version]($style) "
+version_format = "v${major}"
+
+[golang]
+symbol = "\ue627 "
+style = "sapphire"
+format = "[via](overlay1) [$symbol$version]($style) "
+version_format = "v${major}.${minor}"
+
+[lua]
+symbol = "\ue620 "
+style = "blue"
+format = "[via](overlay1) [$symbol$version]($style) "
+version_format = "v${major}.${minor}"
+
+[cmd_duration]
+min_time = 2000
+style = "overlay1"
+format = "[\U000f051b $duration]($style) "
+
+[status]
 disabled = false
-style = 'bold blue'
-symbol = " "
-
-# [golang]
-# format = '[ ](bold cyan)'
-
-# [kubernetes]
-# symbol = '☸ '
-# disabled = false
-# detect_files = ['Dockerfile']
-# format = '[$symbol$context( \($namespace\))]($style) '
-# contexts = [
-#   { context_pattern = "arn:aws:eks:us-west-2:577926974532:cluster/zd-pvc-omer", style = "green", context_alias = "omerxx", symbol = " " },
-# ]
+symbol = "\u2718 "
+style = "red"
+format = "[$symbol$status]($style) "
 
 [docker_context]
 disabled = true

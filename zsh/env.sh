@@ -5,7 +5,6 @@ export WORK_ENV="personal"
 # export WORK_ENV="work"
 
 export EDITOR=/opt/homebrew/bin/nvim
-export DEFAULT_CONDA_ENV="default"
 
 export PERSONAL_SECOND_BRAIN="/Users/aponce1509/repos/new_second_brain"
 export WORK_SECOND_BRAIN="~/notes/"
@@ -17,3 +16,6 @@ elif [[ $WORK_ENV = "personal" ]]; then
 fi
 
 export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmux/tmux-layouts"
+
+# TEST(revert: git checkout zsh/.zshrc zsh/env.sh) — use stowed starship config
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
