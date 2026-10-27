@@ -308,9 +308,11 @@ the final "create/switch" step is per-multiplexer.
 - Profiles/overrides live in one registry file, separate from the main WezTerm
   config: **`wezterm/.config/wezterm/sessions.lua`** (§6).
 - Discovery roots are still hard-coded in the sessioner scripts
-  (`bin/.local/scripts/{wez-,}tmux-sessioner`, `windows/wez-sessioner.ps1`):
-  `~/repos`, `~/ai-repos`, `~/repos/programming-reference/python/apm_python_ref`,
-  `~/OneDrive/Documents`, plus the ad hoc `~/.dotfiles` (from `Ctrl+a i`).
+  (`bin/.local/scripts/{wez-,}tmux-sessioner`, `windows/wez-sessioner.ps1`).
+  `wez-sessioner` lists only `~/ai-repos` and `~/ai-repos/ales-os`; the other
+  scripts keep `~/repos`, `~/ai-repos`,
+  `~/repos/programming-reference/python/apm_python_ref`, `~/OneDrive/Documents`,
+  plus the ad hoc `~/.dotfiles` (from `Ctrl+a i`).
   Making them configurable is still open.
 - Windows uses a parallel config path; keep the schema identical.
 

@@ -22,7 +22,7 @@ command -v wezterm >/dev/null || die "wezterm is not installed. Please install i
 command -v fzf >/dev/null || die "fzf is not installed. Please install it first."
 command -v directory_finder >/dev/null || die "directory_finder is not installed. Please install it first."
 
-roots=(~/repos ~/ai-repos ~/repos/programming-reference/python/apm_python_ref ~/OneDrive/Documents)
+roots=(~/ai-repos ~/ai-repos/ales-os)
 
 # Escape a value for embedding in a JSON string.
 json_escape() { printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'; }
@@ -35,16 +35,38 @@ slug() {
     sed 's/[^a-z0-9@\/-]/-/g; s/--*/-/g; s/^-//; s/-$//'
 }
 
+# Rewrite "(<type>)\t<id>\t<path>" as "<display>\t<type>\t<id>\t<path>": a
+# coloured type badge, a bold id and the dim parent folder. fzf shows only the
+# display column; the rest is read back after selection.
+format_rows() {
+  local reset=$'\e[0m' bold=$'\e[1m' dim=$'\e[2m' color tag id path parent
+  while IFS=$'\t' read -r tag id path; do
+    tag=${${tag#\(}%\)}
+    case $tag in
+      git) color=$'\e[38;5;114m' ;;
+      wt) color=$'\e[38;5;215m' ;;
+      sub) color=$'\e[38;5;176m' ;;
+      bare) color=$'\e[38;5;245m' ;;
+      *) color=$'\e[38;5;110m' ;;
+    esac
+    parent=${${path#~/ai-repos/}:h}
+    [[ $parent == . ]] && parent=
+    printf '%s %-4s %s %s%-26s%s %s%s%s\t%s\t%s\t%s\n' \
+      "$color" "$tag" "$reset" "$bold" "$id" "$reset" "$dim" "$parent" "$reset" \
+      "$tag" "$id" "$path"
+  done
+}
+
 if (( $# >= 1 )); then
   selected_id=$(slug "$(basename -- "$1")")
   selected_cwd=$1
 else
   selected=$(
-    directory_finder "${roots[@]}" --depth 1 --ids |
-      fzf --delimiter=$'\t' --with-nth=2,3 --nth=2,3
+    directory_finder "${roots[@]}" --depth 1 --ids | format_rows |
+      fzf --ansi --delimiter=$'\t' --with-nth=1 --nth=1
   )
   [[ -z $selected ]] && exit 0
-  IFS=$'\t' read -r tag selected_id selected_cwd <<< "$selected"
+  IFS=$'\t' read -r _ tag selected_id selected_cwd <<< "$selected"
 fi
 
 [[ -z $selected_cwd || -z $selected_id ]] && exit 0

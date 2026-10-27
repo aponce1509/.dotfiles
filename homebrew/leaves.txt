@@ -5,3 +5,4 @@ zoxide
 starship
 stow
 
+eza

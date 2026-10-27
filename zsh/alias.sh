@@ -9,8 +9,10 @@ alias tms="tmux switch-client -t"
 alias l="eza --icons --git -a"
 alias lll="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
-
-alias la=tree
+alias ls="eza --icons --group-directories-first"
+alias ll="eza -l --icons --git --group-directories-first"
+alias la="eza -la --icons --git --group-directories-first"
+alias tree="eza --tree --icons --git-ignore"
 alias cat=bat
 
 # Git

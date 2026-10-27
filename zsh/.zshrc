@@ -72,6 +72,30 @@ source ~/.local/scripts/python_venv_activate
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
+# herdr completions
+command -v herdr >/dev/null && eval "$(herdr completion zsh)"
+# Add live session names to `herdr session attach|stop|delete` (also hsa/hss/hsd,
+# since aliases are expanded before completion). stop -> running, delete -> stopped.
+if (( $+functions[_herdr] )); then
+  functions[_herdr_generated]=$functions[_herdr]
+  _herdr() {
+    if [[ ${words[2]} == session && $CURRENT -eq 4 ]]; then
+      local want
+      case ${words[3]} in
+        attach) want='.' ;;
+        stop) want='running' ;;
+        delete) want='stopped' ;;
+        *) _herdr_generated "$@"; return ;;
+      esac
+      local -a sessions
+      sessions=(${(f)"$(herdr session list 2>/dev/null | awk -v w="$want" 'NR>1 && $2 ~ w {print $1}')"})
+      compadd -a sessions
+    else
+      _herdr_generated "$@"
+    fi
+  }
+fi
+
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
