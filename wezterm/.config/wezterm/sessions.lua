@@ -27,15 +27,7 @@ M.default = {
 }
 
 -- Keyed by exact session id (docs/session-model.md §5).
-M.by_id = {
-  -- Test fixture: see ~/ai-repos/sessioner-lab and its `feature` worktree.
-  ['sessioner-lab@feature'] = {
-    tabs = {
-      { title = 'term', panes = { {} } },
-      { title = 'herdr', panes = { { command = 'herdr' } } },
-    },
-  },
-}
+M.by_id = {}
 
 -- Ordered list; first trait whose marker exists in the session root wins.
 -- Matching inspects the root with wezterm.glob (absolute paths), so a marker is
